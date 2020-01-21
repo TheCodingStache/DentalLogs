@@ -29,6 +29,7 @@
             android:layout_height="180dp"
             app:civ_border_width="2dp"
             app:civ_border_color="@color/black"
+            app:civ_border_overlay="true"
             android:src="@drawable/lab1" />
         <TextView
             android:layout_width="match_parent"
