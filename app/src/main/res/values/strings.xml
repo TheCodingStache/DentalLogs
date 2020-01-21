@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Dental Logs</string>
+    <string name="welcome">Καλωσήρθατε στο Dental Logs!</string>
+    <string name="signInText">Παρακαλώ συνδεθείτε για να προχωρήσετε</string>
+    <string name="signUpText">Παρακαλώ δημιουργείστε λογαριασμό για να προχωρήσετε</string>
+    <string name="title_activity_sing_up">SingUpActivity</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="create_account">Δημιουργείστε Λογαριασμό</string>
+    <string name="forgot_password">Ξέχασα τον κωδικό μου</string>
+    <string name="signup">Εγγραφή</string>
+    <string name="signin">Σύνδεση</string>
+</resources>
