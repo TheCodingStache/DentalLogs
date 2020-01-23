@@ -10,4 +10,9 @@
     <string name="forgot_password">Ξέχασα τον κωδικό μου</string>
     <string name="signup">Εγγραφή</string>
     <string name="signin">Σύνδεση</string>
+    <string-array name="spinner">
+        <item>Τρίγωνο</item>
+        <item>Τετράγωνο</item>
+        <item>Οβάλ</item>
+    </string-array>
 </resources>

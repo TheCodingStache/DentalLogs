@@ -3,7 +3,6 @@ package com.example.dentallogs;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,14 +17,17 @@ public class LabSelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_selection);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
         lab1 = findViewById(R.id.lab1);
         lab2 = findViewById(R.id.lab2);
         lab1.setOnClickListener(v -> {
-            Intent lab1 = new Intent(LabSelectionActivity.this, MenuSelectionActivity.class);
+            Intent lab1 = new Intent(LabSelectionActivity.this, SpinnerSelectionActivity.class);
             startActivity(lab1);
         });
         lab2.setOnClickListener(v -> {
-            Intent lab2 = new Intent(LabSelectionActivity.this, MenuSelectionActivity.class);
+            Intent lab2 = new Intent(LabSelectionActivity.this, SpinnerSelectionActivity.class);
         });
     }
 }
