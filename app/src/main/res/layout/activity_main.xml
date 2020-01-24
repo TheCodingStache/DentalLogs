@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -128,7 +128,6 @@
                 android:layout_marginStart="30dp"
                 android:padding="15dp"
                 android:text="@string/signup"
-                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -139,7 +138,6 @@
                 android:layout_marginEnd="30dp"
                 android:padding="15dp"
                 android:text="@string/forgot_password"
-                android:textSize="18sp"
                 android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>

@@ -1,378 +1,575 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="5dp"
     android:fadingEdge="horizontal"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:elevation="8dp"
-        card_view:cardCornerRadius="5dp"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/lab1" />
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:orientation="vertical">
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
 
-            <TextView
-                android:id="@+id/type"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Πληροφορίες Ασθενή"
-                android:textAlignment="center" />
+                android:layout_margin="5dp"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/name"
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Πληροφορίες Ασθενή"
+                    android:textAlignment="center" />
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Όνομα"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Επώνυμο"
+                    android:inputType="text" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/dateText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ημερομηνία Παραλαβής: "
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ΗΗ/ΜΜ/ΕΕ"
+                    android:inputType="date" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Όνομα"
-                android:inputType="text" />
+                android:orientation="vertical"
+                android:weightSum="1">
 
-            <EditText
-                android:id="@+id/lastname"
+                <TextView
+                    android:id="@+id/sexText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Γένος Ασθενή"
+                    android:textAlignment="center" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/man"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Άνδρας" />
+
+                    <RadioButton
+                        android:id="@+id/woman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Γυναίκα" />
+                </RadioGroup>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Επώνυμο"
-                android:inputType="text" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:elevation="8dp"
-        card_view:cardCornerRadius="5dp"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false">
+                <TextView
+                    android:id="@+id/shapeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Σχήμα προσώπου"
+                    android:textAlignment="center" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/triangle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Τρίγωνο" />
+
+                    <RadioButton
+                        android:id="@+id/square"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Τετράγωνο" />
+
+                    <RadioButton
+                        android:id="@+id/circle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Κυκλικό" />
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/kindOfWork"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Είδος Εργασίας"
+                    android:textAlignment="center" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/kinitiCheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Κινητή" />
+
+                    <RadioButton
+                        android:id="@+id/akinitiCheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ακίνητη" />
+                </RadioGroup>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/thermoplastiki"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:spinnerMode="dialog" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/PMMA"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:spinnerMode="dialog" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/zirkonia"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:spinnerMode="dialog" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/metallo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:spinnerMode="dialog" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="Χρώμα" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="A1"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="A2"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="A3.5"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="A4">
+
+                    </RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="B1"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="B2"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="B3"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="B4"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="C1"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="C2"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="C3"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="C4">
+
+                    </RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="D2"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="D3"></RadioButton>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="D4"></RadioButton>
+                </RadioGroup>
+            </HorizontalScrollView>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/teeth">
+
+                </ImageView>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:hint="Σχόλια"
+                    android:inputType="text" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Επιλογή εικόνας" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="8dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/camera" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/dateText"
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ημερομηνία Παραλαβής: "
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="ΗΗ/ΜΜ/ΕΕ"
-                android:inputType="date" />
+                android:backgroundTint="@color/white"
+                android:text="αποστολη"
+                android:textColor="@color/black" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:elevation="8dp"
-        card_view:cardCornerRadius="5dp"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/sexText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Γένος Ασθενή"
-                android:textAlignment="center" />
-
-            <CheckBox
-                android:id="@+id/man"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Άνδρας" />
-
-            <CheckBox
-                android:id="@+id/woman"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Γυναίκα" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:elevation="8dp"
-        card_view:cardCornerRadius="5dp"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/shapeText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Σχήμα προσώπου"
-                android:textAlignment="center" />
-
-            <RadioButton
-                android:id="@+id/triangle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Τρίγωνο" />
-
-            <RadioButton
-                android:id="@+id/square"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Τετράγωνο" />
-
-            <RadioButton
-                android:id="@+id/circle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Κυκλικό" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:elevation="8dp"
-        card_view:cardCornerRadius="5dp"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:elevation="8dp"
-        card_view:cardCornerRadius="5dp"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/kindOfWork"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Είδος Εργασίας"
-                android:textAlignment="center" />
-
-            <CheckBox
-                android:id="@+id/kinitiCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Κινητή" />
-
-            <CheckBox
-                android:id="@+id/akinitiCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ακίνητη" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:elevation="8dp"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false">
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/thermoplastiki"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".5" />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/PMMA"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".5" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:elevation="8dp"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false">
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/zirkonia"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".5" />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/metallo"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".5" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:elevation="8dp"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false">
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:elevation="8dp"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false">
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="Σχόλια" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

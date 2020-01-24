@@ -85,7 +85,6 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                     //do nothing
                 } else {
                     String item = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(parent.getContext(), item + " επιλέχθηκε", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -100,7 +99,6 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                     //do nothing
                 } else {
                     String item = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(parent.getContext(), item + " επιλέχθηκε", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -116,7 +114,6 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                     //do nothing
                 } else {
                     String item = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(parent.getContext(), item + " επιλέχθηκε", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -132,7 +129,6 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                     //do nothing
                 } else {
                     String item = parent.getItemAtPosition(position).toString();
-                    Toast.makeText(parent.getContext(), item + " επιλέχθηκε", Toast.LENGTH_LONG).show();
                 }
             }
 

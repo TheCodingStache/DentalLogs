@@ -39,7 +39,6 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:backgroundTint="@android:color/transparent"
-            android:editable="true"
             android:hint="@string/username"
             android:inputType="textAutoComplete"
             android:padding="15dp"
@@ -60,7 +59,6 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:backgroundTint="@android:color/transparent"
-            android:editable="true"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="15dp"
@@ -81,7 +79,6 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:backgroundTint="@android:color/transparent"
-            android:editable="true"
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="15dp"
@@ -128,7 +125,6 @@
                 android:padding="15dp"
                 android:text="Εγγραφή"
                 android:textColor="@android:color/white"
-                android:textSize="25sp"
                 android:textStyle="bold"
                android:focusable="true"/>
         </RelativeLayout>
@@ -149,7 +145,6 @@
                 android:padding="15dp"
                 android:text="@string/signin"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
