@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dentallogs.Model.MessageModel;
-import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -21,6 +20,7 @@ import org.json.JSONObject;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ChatBoxActivity extends AppCompatActivity {
     public RecyclerView mRecyclerView;
@@ -30,7 +30,9 @@ public class ChatBoxActivity extends AppCompatActivity {
     public Button send;
     //declare socket object
     private Socket socket;
-    public String Nickname;
+    public String username;
+    public String message;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +40,12 @@ public class ChatBoxActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_box);
         messageText = findViewById(R.id.message);
         send = findViewById(R.id.send);
-
-        Nickname = getIntent().getExtras().getString(ChatActivity.NICKNAME);
+        username = Objects.requireNonNull(getIntent().getExtras()).getString(ChatActivity.NICKNAME);
         try {
-            String URL = "http://192.168.2.66:5000";
+            String URL = "https://androidsocketswithnodejs.herokuapp.com/";
             socket = IO.socket(URL);
             socket.connect();
-            socket.emit("chatmessage", Nickname);
+            socket.emit("chatmessage", username);
         } catch (URISyntaxException e) {
             e.printStackTrace();
 
@@ -57,10 +58,20 @@ public class ChatBoxActivity extends AppCompatActivity {
 
         // message send action
         send.setOnClickListener(v -> {
+            message = messageText.getText().toString().trim();
             //retrieve the nickname and the message content and fire the event messagedetection
             if (!messageText.getText().toString().isEmpty()) {
-                socket.emit("messagedetection", Nickname, messageText.getText().toString());
+                socket.emit("messagedetection", message, messageText.getText().toString().trim());
+                messageText.setText(message);
                 messageText.setText(" ");
+                MessageModel messageModel = new MessageModel(username, message, id);
+                MessageList.add(messageModel);
+                // add the new updated list to the adapter
+                chatBoxAdapter = new ChatBoxAdapter(MessageList);
+                // notify the adapter to update the recycler view
+                chatBoxAdapter.notifyDataSetChanged();
+                //set the adapter for the recycler view
+                mRecyclerView.setAdapter(chatBoxAdapter);
             }
         });
 
@@ -74,27 +85,25 @@ public class ChatBoxActivity extends AppCompatActivity {
             Toast.makeText(ChatBoxActivity.this, data, Toast.LENGTH_SHORT).show();
 
         }));
-        socket.on("message", args -> runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                JSONObject data = (JSONObject) args[0];
-                try {
-                    //extract data from fired event
-                    String nickname = data.getString("senderNickname");
-                    String message = data.getString("message");
-                    // make instance of message
-                    MessageModel messageModel = new MessageModel(nickname, message);
-                    //add the message to the messageList
-                    MessageList.add(messageModel);
-                    // add the new updated list to the adapter
-                    chatBoxAdapter = new ChatBoxAdapter(MessageList);
-                    // notify the adapter to update the recycler view
-                    chatBoxAdapter.notifyDataSetChanged();
-                    //set the adapter for the recycler view
-                    mRecyclerView.setAdapter(chatBoxAdapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+        socket.on("receivemessage", args -> runOnUiThread(() -> {
+            JSONObject data = (JSONObject) args[0];
+            try {
+                //extract data from fired event
+                String nickname = data.getString("username");
+                String message = data.getString("message");
+                String id = data.getString("id");
+                // make instance of message
+                MessageModel messageModel = new MessageModel(nickname, message, id);
+                //add the message to the messageList
+                MessageList.add(messageModel);
+                // add the new updated list to the adapter
+                chatBoxAdapter = new ChatBoxAdapter(MessageList);
+                // notify the adapter to update the recycler view
+                chatBoxAdapter.notifyDataSetChanged();
+                //set the adapter for the recycler view
+                mRecyclerView.setAdapter(chatBoxAdapter);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }));
     }

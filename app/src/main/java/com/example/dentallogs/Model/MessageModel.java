@@ -4,14 +4,15 @@ public class MessageModel {
 
     private String nickname;
     private String message;
+    private String socketID;
 
-    public MessageModel() {
 
-    }
 
-    public MessageModel(String nickname, String message) {
+
+    public MessageModel(String nickname, String message, String socketID) {
         this.nickname = nickname;
         this.message = message;
+        this.socketID = socketID;
     }
 
     public String getNickname() {
@@ -28,5 +29,15 @@ public class MessageModel {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public void setSocketID(String socketID) {
+        this.socketID = socketID;
+    }
+    public String getSocketID() {
+        return socketID;
+    }
+    public MessageModel() {
+
     }
 }
