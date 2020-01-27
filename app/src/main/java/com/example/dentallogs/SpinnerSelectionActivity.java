@@ -1,15 +1,18 @@
 package com.example.dentallogs;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -22,16 +25,19 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
     ArrayList<String> pmma;
     ArrayList<String> metallo;
     ArrayList<String> zirkonia;
-
+    EditText comment;
+    FloatingActionButton mFloatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_selection);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-
+        comment = findViewById(R.id.comment);
+        mFloatingActionButton = findViewById(R.id.floatingActionButton);
         thermo = new ArrayList<>();
         thermo.add(0, "Θερμοπλαστική/Ακρυλική");
         thermo.add("Άκερς");
@@ -77,6 +83,14 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         second.setAdapter(secondSpinnerAdapter);
         third.setAdapter(thirdSpinnerAdapter);
         forth.setAdapter(forthSpinnerAdapter);
+
+        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SpinnerSelectionActivity.this, ChatActivity.class);
+                startActivity(intent);
+            }
+        });
 
         first.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
