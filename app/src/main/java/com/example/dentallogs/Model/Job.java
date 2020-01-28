@@ -1,6 +1,8 @@
 package com.example.dentallogs.Model;
 
-public class Job {
+import java.io.Serializable;
+
+public class Job implements Serializable {
     private boolean kiniti;
     private boolean akiniti;
 

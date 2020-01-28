@@ -1,6 +1,8 @@
 package com.example.dentallogs.Model;
 
-public class Face {
+import java.io.Serializable;
+
+public class Face implements Serializable {
     private boolean triangle;
     private boolean square;
     private boolean circle;

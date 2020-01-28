@@ -62,51 +62,56 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         Spinner second = findViewById(R.id.PMMA);
         Spinner third = findViewById(R.id.metallo);
         Spinner forth = findViewById(R.id.zirkonia);
-
+        button = findViewById(R.id.send);
         sex = new Sex();
         face = new Face();
         job = new Job();
-        int choiceSex = sexGroup.getCheckedRadioButtonId();
-        switch (choiceSex) {
-            case R.id.woman:
-                sex.setMale(false);
-                sex.setFemale(true);
-                break;
-            case R.id.man:
-                sex.setMale(true);
-                sex.setFemale(false);
-                break;
-        }
-        int choiceFace = faceGroup.getCheckedRadioButtonId();
-        switch (choiceFace) {
-            case R.id.triangle:
-                face.setSquare(false);
-                face.setCircle(false);
-                face.setSquare(true);
-                break;
-            case R.id.square:
-                face.setTriangle(false);
-                face.setCircle(false);
-                face.setSquare(true);
-                break;
-            case R.id.circle:
-                face.setTriangle(false);
-                face.setSquare(false);
-                face.setCircle(true);
-                break;
-        }
 
-        int choiceJob = jobGroup.getCheckedRadioButtonId();
-        switch (choiceJob) {
-            case R.id.akinitiCheck:
+
+        sexGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.woman) {
+                    sex.setFemale(true);
+                    sex.setMale(false);
+                } else if (checkedId == R.id.man) {
+                    sex.setMale(true);
+                    sex.setFemale(false);
+                }
+            }
+        });
+        faceGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.triangle) {
+                face.setTriangle(true);
+                face.setSquare(false);
+                face.setCircle(false);
+            } else if (checkedId == R.id.square) {
+                face.setSquare(true);
+                face.setTriangle(false);
+                face.setCircle(false);
+            } else if (checkedId == R.id.circle) {
+                face.setCircle(true);
+                face.setTriangle(false);
+                face.setSquare(false);
+            }
+        });
+        jobGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.kinitiCheck) {
+                job.setKiniti(true);
+                job.setAkiniti(false);
+            } else if (checkedId == R.id.akinitiCheck) {
                 job.setAkiniti(true);
                 job.setKiniti(false);
-                break;
-            case R.id.kinitiCheck:
-                job.setAkiniti(false);
-                job.setKiniti(true);
-                break;
-        }
+            }
+        });
+
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(SpinnerSelectionActivity.this, ResultActivity.class);
+            intent.putExtra("sex", sex);
+            intent.putExtra("face", face);
+            intent.putExtra("job", job);
+            startActivity(intent);
+        });
 
         thermo = new ArrayList<>();
         thermo.add(0, "Θερμοπλαστική/Ακρυλική");
@@ -147,12 +152,9 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         third.setAdapter(thirdSpinnerAdapter);
         forth.setAdapter(forthSpinnerAdapter);
 
-        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SpinnerSelectionActivity.this, ChatActivity.class);
-                startActivity(intent);
-            }
+        mFloatingActionButton.setOnClickListener(v -> {
+            Intent intent = new Intent(SpinnerSelectionActivity.this, ChatActivity.class);
+            startActivity(intent);
         });
 
         first.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -214,12 +216,6 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
 
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SpinnerSelectionActivity.this, ResultActivity.class);
-                startActivity(intent);
-            }
-        });
     }
+
 }

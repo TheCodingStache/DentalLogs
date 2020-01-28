@@ -8,11 +8,17 @@
     <string name="password">Password</string>
     <string name="create_account">Δημιουργείστε Λογαριασμό</string>
     <string name="forgot_password">Ξέχασα τον κωδικό μου</string>
-    <string name="signup">Εγγραφή</string>
-    <string name="signin">Σύνδεση</string>
-    <string-array name="spinner">
-        <item>Τρίγωνο</item>
-        <item>Τετράγωνο</item>
-        <item>Οβάλ</item>
-    </string-array>
+    <string name="singUp">Εγγραφή</string>
+    <string name="signIn">Σύνδεση</string>
+    <string name="typeFace">Τύπος Προσώπου</string>
+    <string name="typeSex">Τύπος φύλλου</string>
+    <string name="typeJob">Τύπος Εργασίας</string>
+    <string name="man">Άντρας</string>
+    <string name="woman">Γυναίκα</string>
+    <string name="triangle">Τρίγωνο</string>
+    <string name="square">Τετράγωνο</string>
+    <string name="circle">Κυκλικό</string>
+    <string name="kiniti">Κινητή</string>
+    <string name="akiniti">Ακίνητη</string>
+
 </resources>
