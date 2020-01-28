@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dentallogs">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:fitsSystemWindows="true"
@@ -11,9 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize">
-        <activity android:name=".ChatBoxAdapter"></activity>
-        <activity android:name=".ChatActivity" />
-        <activity android:name=".ChatBoxActivity" />
+        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".Adapters.ChatBoxAdapter" />
+        <activity android:name=".Chat.ChatActivity" />
+        <activity android:name=".Chat.ChatBoxActivity" />
         <activity android:name=".SpinnerSelectionActivity" />
         <activity android:name=".LabSelectionActivity" />
         <activity android:name=".MainActivity">

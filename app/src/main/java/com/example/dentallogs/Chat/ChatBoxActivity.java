@@ -1,4 +1,4 @@
-package com.example.dentallogs;
+package com.example.dentallogs.Chat;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dentallogs.Adapters.ChatBoxAdapter;
 import com.example.dentallogs.Model.MessageModel;
+import com.example.dentallogs.R;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -42,7 +44,7 @@ public class ChatBoxActivity extends AppCompatActivity {
         send = findViewById(R.id.send);
         username = Objects.requireNonNull(getIntent().getExtras()).getString(ChatActivity.NICKNAME);
         try {
-            String URL = "https://androidsocketswithnodejs.herokuapp.com/";
+            String URL = "https://da1f736c.ngrok.io/";
             socket = IO.socket(URL);
             socket.connect();
             socket.emit("chatmessage", username);
@@ -64,7 +66,7 @@ public class ChatBoxActivity extends AppCompatActivity {
                 socket.emit("messagedetection", message, messageText.getText().toString().trim());
                 messageText.setText(message);
                 messageText.setText(" ");
-                MessageModel messageModel = new MessageModel(username, message, id);
+                MessageModel messageModel = new MessageModel(message);
                 MessageList.add(messageModel);
                 // add the new updated list to the adapter
                 chatBoxAdapter = new ChatBoxAdapter(MessageList);
@@ -89,11 +91,10 @@ public class ChatBoxActivity extends AppCompatActivity {
             JSONObject data = (JSONObject) args[0];
             try {
                 //extract data from fired event
-                String nickname = data.getString("username");
+//                String nickname = data.getString("username");
                 String message = data.getString("message");
-                String id = data.getString("id");
                 // make instance of message
-                MessageModel messageModel = new MessageModel(nickname, message, id);
+                MessageModel messageModel = new MessageModel(message);
                 //add the message to the messageList
                 MessageList.add(messageModel);
                 // add the new updated list to the adapter

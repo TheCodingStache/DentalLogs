@@ -1,6 +1,5 @@
-package com.example.dentallogs;
+package com.example.dentallogs.Adapters;
 
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dentallogs.Model.MessageModel;
+import com.example.dentallogs.R;
 
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final ChatBoxAdapter.MyViewHolder holder, final int position) {
         final MessageModel messageModel = MessageList.get(position);
-        holder.nickname.setText(messageModel.getNickname() + " : ");
+//        holder.nickname.setText(messageModel.getNickname() + " : ");
         holder.message.setText(messageModel.getMessage());
     }
 }
