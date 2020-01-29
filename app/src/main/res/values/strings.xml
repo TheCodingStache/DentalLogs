@@ -20,5 +20,25 @@
     <string name="circle">Κυκλικό</string>
     <string name="kiniti">Κινητή</string>
     <string name="akiniti">Ακίνητη</string>
+    <string name="a1">a1</string>
+    <string name="a2">a2</string>
+    <string name="a35">a3</string>
+    <string name="a4">a4</string>
+    <string name="b1">b1</string>
+    <string name="b2">b2</string>
+    <string name="b3">b3</string>
+    <string name="b4">b4</string>
+    <string name="c1">c1</string>
+    <string name="c2">c2</string>
+    <string name="c3">c3</string>
+    <string name="c4">c4</string>
+    <string name="d2">d2</string>
+    <string name="d3">d3</string>
+    <string name="d4">d4</string>
+    <string name="color">color</string>
+    <string name="material">υλικό</string>
+    <string name="atomic">Ατομικό</string>
+    <string name="basic">Βασικό</string>
+
 
 </resources>

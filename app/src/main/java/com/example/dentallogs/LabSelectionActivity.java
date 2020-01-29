@@ -17,17 +17,17 @@ public class LabSelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_selection);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         lab1 = findViewById(R.id.lab1);
-        lab2 = findViewById(R.id.lab2);
+//        lab2 = findViewById(R.id.lab2);
         lab1.setOnClickListener(v -> {
             Intent lab1 = new Intent(LabSelectionActivity.this, SpinnerSelectionActivity.class);
             startActivity(lab1);
         });
-        lab2.setOnClickListener(v -> {
-            Intent lab2 = new Intent(LabSelectionActivity.this, SpinnerSelectionActivity.class);
-        });
+//        lab2.setOnClickListener(v -> {
+//            Intent lab2 = new Intent(LabSelectionActivity.this, SpinnerSelectionActivity.class);
+//        });
     }
 }

@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         TextView signIn = findViewById(R.id.signUpText);
         logIn = findViewById(R.id.logIn);
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent signUp = new Intent(MainActivity.this, SignUpActivity.class);
                 startActivity(signUp);
+                finish();
             }
         });
         logIn.setOnClickListener(new View.OnClickListener() {

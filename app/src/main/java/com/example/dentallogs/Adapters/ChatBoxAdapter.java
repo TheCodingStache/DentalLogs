@@ -47,7 +47,7 @@ public class ChatBoxAdapter extends RecyclerView.Adapter<ChatBoxAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final ChatBoxAdapter.MyViewHolder holder, final int position) {
         final MessageModel messageModel = MessageList.get(position);
-//        holder.nickname.setText(messageModel.getNickname() + " : ");
+//        holder.nickname.setText(messageModel.getName());
         holder.message.setText(messageModel.getMessage());
     }
 }

@@ -1,132 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
-    android:layout_margin="5dp"
     android:fadingEdge="horizontal"
     android:orientation="vertical">
 
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/darkGrey">
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:background="@drawable/lab1" />
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardCornerRadius="5dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/lab" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Πληροφορίες Ασθενή"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="vertical">
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <TextView
-                    android:id="@+id/type"
-                    android:layout_width="match_parent"
+                    android:id="@+id/nameText"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="Πληροφορίες Ασθενή"
-                    android:textAlignment="center" />
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight=".5"
+                    android:hint="Όνομα"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/lastnameText"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight=".5"
+                    android:hint="Επώνυμο"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <EditText
                     android:id="@+id/name"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:hint="Όνομα"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight=".5"
                     android:inputType="text" />
 
                 <EditText
                     android:id="@+id/lastname"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:hint="Επώνυμο"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight=".5"
                     android:inputType="text" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardCornerRadius="5dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Ημερομηνία Παραλαβής: "
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/dateText"
+                <DatePicker
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ημερομηνία Παραλαβής: "
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="ΗΗ/ΜΜ/ΕΕ"
-                    android:inputType="date" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardCornerRadius="5dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
+            <TextView
+                android:id="@+id/sexText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Γένος Ασθενή"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:orientation="vertical"
                 android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/sexText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Γένος Ασθενή"
-                    android:textAlignment="center" />
 
                 <RadioGroup
                     android:id="@+id/sexGroup"
@@ -147,32 +145,23 @@
                 </RadioGroup>
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardCornerRadius="5dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
+            <TextView
+                android:id="@+id/shapeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Σχήμα προσώπου"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/shapeText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Σχήμα προσώπου"
-                    android:textAlignment="center" />
 
                 <RadioGroup
                     android:id="@+id/faceGroup"
@@ -199,20 +188,7 @@
                         android:text="Κυκλικό" />
                 </RadioGroup>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardCornerRadius="5dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -221,32 +197,23 @@
 
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardCornerRadius="5dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
+            <TextView
+                android:id="@+id/kindOfWork"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Είδος Εργασίας"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/kindOfWork"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Είδος Εργασίας"
-                    android:textAlignment="center" />
 
                 <RadioGroup
                     android:id="@+id/jobGroup"
@@ -265,25 +232,12 @@
                         android:layout_height="wrap_content"
                         android:text="Ακίνητη" />
                 </RadioGroup>
-
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:orientation="horizontal"
                 android:weightSum="1">
 
@@ -300,33 +254,15 @@
                     android:layout_height="match_parent"
                     android:layout_weight=".5"
                     android:spinnerMode="dialog" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:orientation="horizontal"
                 android:weightSum="1">
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/zirkonia"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".5"
-                    android:spinnerMode="dialog" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/metallo"
@@ -334,153 +270,164 @@
                     android:layout_height="match_parent"
                     android:layout_weight=".5"
                     android:spinnerMode="dialog" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/zirkonia"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:spinnerMode="dialog" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
+            <RadioGroup
+                android:id="@+id/atomikovasiko"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
 
-        </androidx.cardview.widget.CardView>
+                <RadioButton
+                    android:id="@+id/atomiko"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Ατομικό Δισκάριο"/>
 
+                <RadioButton
+                    android:id="@+id/vasiki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Βασική Πλάκα"/>
+            </RadioGroup>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:text="Χρώμα" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:text="Χρώμα"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
 
                 <RadioGroup
+                    android:id="@+id/color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/a1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="A1"/>
+                        android:text="@string/a1" />
 
                     <RadioButton
+                        android:id="@+id/a2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="A2"/>
+                        android:text="@string/a2" />
 
                     <RadioButton
+                        android:id="@+id/a35"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="A3.5"/>
+                        android:text="@string/a35" />
 
                     <RadioButton
+                        android:id="@+id/a4"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="A4">
+                        android:text="@string/a4">
 
                     </RadioButton>
 
                     <RadioButton
+                        android:id="@+id/b1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="B1">
+                        android:text="@string/b1" />
+
+                    <RadioButton
+                        android:id="@+id/b2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/b2"></RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/b3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/b3">
+
                     </RadioButton>
 
                     <RadioButton
+                        android:id="@+id/b4"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="B2">
-
-                    </RadioButton>
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="B3">
-
-                    </RadioButton>
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="B4"/>
+                        android:text="@string/b4" />
 
 
                     <RadioButton
+                        android:id="@+id/c1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="C1"/>
+                        android:text="@string/c1" />
 
                     <RadioButton
+                        android:id="@+id/c2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="C2"/>
+                        android:text="@string/c2" />
 
                     <RadioButton
+                        android:id="@+id/c3"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="C3"/>
+                        android:text="@string/c3" />
 
                     <RadioButton
+                        android:id="@+id/c4"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="C4"/>
+                        android:text="@string/c4" />
 
                     <RadioButton
+                        android:id="@+id/d2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="D2"/>
+                        android:text="@string/d2" />
 
                     <RadioButton
+                        android:id="@+id/d3"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="D3"/>
+                        android:text="@string/d3" />
 
                     <RadioButton
+                        android:id="@+id/d4"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="D4"/>
+                        android:text="@string/d4" />
                 </RadioGroup>
             </HorizontalScrollView>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:text="Επιλογή Δοντιών"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -489,25 +436,12 @@
                     android:background="@drawable/teeth">
 
                 </ImageView>
-
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:orientation="horizontal">
 
                 <EditText
@@ -517,79 +451,52 @@
                     android:hint="Σχόλια"
                     android:inputType="textLongMessage" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Επιλογή Φωτογραφίας"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Επιλογή εικόνας" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="8dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-
 
                 <ImageView
                     android:id="@+id/photo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/camera" />
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:cropToPadding="false"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/camera" />
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/send"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="αποστολη"
-                android:textColor="@color/black" />
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/send"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="αποστολη"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
         </LinearLayout>
-    </LinearLayout>
     </ScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
@@ -598,12 +505,13 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="55dp"
+        android:background="@color/darkBlue"
         android:clickable="true"
         android:elevation="16dp"
         android:focusable="true"
+        android:src="@drawable/chat_new_white"
         android:visibility="visible"
-        android:src="@drawable/chat"
-        android:backgroundTint="@color/lightGreen"
         app:fabSize="normal"
         app:pressedTranslationZ="12dp" />
+
 </RelativeLayout>

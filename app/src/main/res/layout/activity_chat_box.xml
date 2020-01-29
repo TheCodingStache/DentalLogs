@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundchat2"
     tools:context=".Chat.ChatBoxActivity">
 
     <LinearLayout
@@ -32,21 +33,25 @@
             android:weightSum="3">
 
             <EditText
-
                 android:id="@+id/message"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="3"
-
-                android:hint="your message" />
+                android:background="@drawable/bg_rounded_edittext"
+                android:hint="Γράψε το μήνυμα σου..."
+                android:inputType="textLongMessage"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
 
             <Button
-
                 android:id="@+id/send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:text="send" />
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_rounded_edittext"
+                android:text="Αποστολη"
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </LinearLayout>
