@@ -33,6 +33,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/usernameSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -53,6 +54,7 @@
             android:background="#B1B1B1" />
 
         <EditText
+            android:id="@+id/emailSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -73,6 +75,7 @@
             android:background="#B1B1B1" />
 
         <EditText
+            android:id="@+id/passwordSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"

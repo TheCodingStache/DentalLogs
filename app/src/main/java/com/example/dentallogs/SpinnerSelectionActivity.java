@@ -1,7 +1,7 @@
 package com.example.dentallogs;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -14,11 +14,13 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,12 +34,11 @@ import com.example.dentallogs.Model.Sex;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class SpinnerSelectionActivity extends AppCompatActivity {
     protected static final int CAMERA_REQUEST = 0;
     protected static final int GALLERY_PICTURE = 1;
-    Bitmap bitmap;
-    String selectedImagePath;
     private Sex sex;
     private Face face;
     private Job job;
@@ -45,6 +46,8 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
     private ColorModel colorModel;
     private ImageView photo;
     private static final int GalleryPick = 1;
+    Calendar mCalendar;
+    DatePickerDialog mDatePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +71,25 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         Spinner third = findViewById(R.id.metallo);
         Spinner forth = findViewById(R.id.zirkonia);
         Button button = findViewById(R.id.send);
+        TextView date = findViewById(R.id.date);
         sex = new Sex();
         face = new Face();
         job = new Job();
         mAtomikoVasiko = new AtomikoVasiko();
         colorModel = new ColorModel();
-
         photo.setOnClickListener(v -> openMedia());
+
+        date.setOnClickListener(v -> {
+            mCalendar = Calendar.getInstance();
+            int day = mCalendar.get(Calendar.DAY_OF_MONTH);
+            int month = mCalendar.get(Calendar.MONTH);
+            int year = mCalendar.get(Calendar.YEAR);
+
+            mDatePickerDialog = new DatePickerDialog(SpinnerSelectionActivity.this, (view, year1, month1, dayOfMonth)
+                    -> date.setText(dayOfMonth + "/" + (month1+1) + "/" + year1), year, month, day );
+            mDatePickerDialog.show();
+        });
+
         atomikovasiko.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.atomiko) {
                 mAtomikoVasiko.setAtomiko(true);
@@ -435,8 +450,8 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Θερμοπλαστική")) {
-                    //do nothing
                 } else {
+                    first.getSelectedItem().toString();
                     String item = parent.getItemAtPosition(position).toString();
                 }
             }
@@ -449,8 +464,8 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("PMMA")) {
-                    //do nothing
                 } else {
+                    second.getSelectedItem().toString();
                     String item = parent.getItemAtPosition(position).toString();
                 }
             }
@@ -463,9 +478,9 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         third.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (parent.getItemAtPosition(position).equals("PMMA")) {
-                    //do nothing
+                if (parent.getItemAtPosition(position).equals("Μέταλλο")) {
                 } else {
+                    third.getSelectedItem().toString();
                     String item = parent.getItemAtPosition(position).toString();
                 }
             }
@@ -478,9 +493,9 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         forth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (parent.getItemAtPosition(position).equals("PMMA")) {
-                    //do nothing
+                if (parent.getItemAtPosition(position).equals("Ζιρκόνια")) {
                 } else {
+                    String i = forth.getSelectedItem().toString();
                     String item = parent.getItemAtPosition(position).toString();
                 }
             }
@@ -500,44 +515,40 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             photo.setImageBitmap(bitmap);
 
+
         } else if (requestCode == GalleryPick && resultCode == RESULT_OK && data != null) {
             Uri imageUri = data.getData();
             photo.setImageURI(imageUri);
         } else {
             Toast.makeText(this, "Κάτι δεν πήγε καλά, δοκιμάστε ξανά", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(SpinnerSelectionActivity.this, SpinnerSelectionActivity.class));
-            finish();
+
         }
     }
 
 
     private void openMedia() {
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(SpinnerSelectionActivity.this);
-        myAlertDialog.setTitle("ΕΠΙΛΕΞΤΕ ΦΩΤΟΓΡΑΦΙΑ");
+        myAlertDialog.setTitle("Επιλέξτε Φωτογραφία");
         myAlertDialog.setPositiveButton("ΣΥΛΛΟΓΗ",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        Intent pictureActionIntent = null;
-                        pictureActionIntent = new Intent(
-                                Intent.ACTION_PICK,
-                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        startActivityForResult(
-                                pictureActionIntent,
-                                GALLERY_PICTURE);
+                (arg0, arg1) -> {
+                    Intent pictureActionIntent = null;
+                    pictureActionIntent = new Intent(
+                            Intent.ACTION_PICK,
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(
+                            pictureActionIntent,
+                            GALLERY_PICTURE);
 
-                    }
                 });
 
         myAlertDialog.setNegativeButton("ΚΑΜΕΡΑ",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-                        StrictMode.setVmPolicy(builder.build());
-                        Intent intent = new Intent(
-                                MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent,
-                                CAMERA_REQUEST);
-                    }
+                (arg0, arg1) -> {
+                    StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+                    StrictMode.setVmPolicy(builder.build());
+                    Intent intent = new Intent(
+                            MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent,
+                            CAMERA_REQUEST);
                 });
         myAlertDialog.show();
     }

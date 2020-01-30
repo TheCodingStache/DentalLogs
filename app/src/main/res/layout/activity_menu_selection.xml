@@ -98,15 +98,21 @@
                 android:textSize="24sp" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
-                <DatePicker
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:focusable="true"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:hint="Πατήστε για να επιλέξετε ημερομηνία" />
             </LinearLayout>
 
             <TextView
@@ -290,13 +296,13 @@
                     android:id="@+id/atomiko"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Ατομικό Δισκάριο"/>
+                    android:text="Ατομικό Δισκάριο" />
 
                 <RadioButton
                     android:id="@+id/vasiki"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Βασική Πλάκα"/>
+                    android:text="Βασική Πλάκα" />
             </RadioGroup>
 
             <TextView
@@ -460,24 +466,30 @@
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
-            <RelativeLayout
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
+                android:scrollbars="none">
 
-                <ImageView
-                    android:id="@+id/photo"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:cropToPadding="false"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/camera" />
+                <LinearLayout
+                    android:id="@+id/gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
 
-            </RelativeLayout>
-
+                    <ImageView
+                        android:id="@+id/photo"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="10dp"
+                        android:cropToPadding="false"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/addphoto" />
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <LinearLayout
                 android:layout_width="wrap_content"
