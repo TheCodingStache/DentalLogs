@@ -5,15 +5,9 @@ import com.example.dentallogs.UnsafeOkHttpClient;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Url;
-
 public class Client {
     private Retrofit retrofit;
-    private String BASE_URL = "http://192.168.2.207:7051";
+    private String BASE_URL = "https://4cb616ff.ngrok.io";
     private static Client mInstance;
     OkHttpClient okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
     private Client() {

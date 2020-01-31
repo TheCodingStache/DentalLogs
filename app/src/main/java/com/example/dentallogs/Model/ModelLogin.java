@@ -1,10 +1,13 @@
 package com.example.dentallogs.Model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ModelLogin {
-    @SerializedName("username")
+    @Expose
+    @SerializedName("email")
     private String username;
+    @Expose
     @SerializedName("password")
     private String password;
 
@@ -28,4 +31,9 @@ public class ModelLogin {
         this.username = username;
         this.password = password;
     }
+
+    public ModelLogin() {
+
+    }
+
 }
