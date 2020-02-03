@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -29,9 +31,23 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton logIn;
     private EditText username;
     private EditText password;
+    private boolean doubleBackToExitPressedOnce = false;
     private ProgressDialog loadingBar;
+
     private final static String TAG = "MainActivity login";
     RelativeLayout mRelativeLayout;
+    boolean connected = false;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            finishActivity(R.layout.activity_main);
+            finish();
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Πηγαίνετε πίσω μία ακόμη φορά για να αποσυνδεθείτε", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +58,14 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            connected = true;
+        }
+        else
+            connected = false;
         TextView signIn = findViewById(R.id.signUpText);
         username = findViewById(R.id.usernameLogin);
         password = findViewById(R.id.passwordLogin);
@@ -53,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         logIn.setOnClickListener(v -> {
             userLogin();
         });
+
     }
 
     private void userLogin() {
@@ -103,17 +127,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-
     }
 
     private void openSignUp() {
         Intent signUp = new Intent(this, SignUpActivity.class);
         startActivity(signUp);
     }
-
-    public boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
-    }
+//
+//    public boolean isNetworkAvailable(Context context) {
+//        ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+//        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+//    }
 }
