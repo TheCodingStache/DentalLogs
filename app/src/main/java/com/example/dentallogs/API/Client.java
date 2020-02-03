@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class Client {
     private Retrofit retrofit;
-    private String BASE_URL = "https://4cb616ff.ngrok.io";
+    private String BASE_URL = "https://06f3e9d2.ngrok.io";
     private static Client mInstance;
     OkHttpClient okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
     private Client() {

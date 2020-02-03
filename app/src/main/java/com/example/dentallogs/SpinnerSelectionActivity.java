@@ -14,11 +14,11 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +32,7 @@ import com.example.dentallogs.Model.Face;
 import com.example.dentallogs.Model.Job;
 import com.example.dentallogs.Model.Sex;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,6 +49,8 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
     private static final int GalleryPick = 1;
     Calendar mCalendar;
     DatePickerDialog mDatePickerDialog;
+    RelativeLayout mRelativeLayout;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,9 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         EditText comment = findViewById(R.id.comment);
+        back = findViewById(R.id.back);
         FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
+        mRelativeLayout = findViewById(R.id.relativeSelection);
         RadioGroup sexGroup = findViewById(R.id.sexGroup);
         RadioGroup faceGroup = findViewById(R.id.faceGroup);
         RadioGroup jobGroup = findViewById(R.id.jobGroup);
@@ -505,6 +510,15 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
 
             }
         });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back = new Intent(SpinnerSelectionActivity.this, LabSelectionActivity.class);
+                startActivity(back);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -520,8 +534,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             Uri imageUri = data.getData();
             photo.setImageURI(imageUri);
         } else {
-            Toast.makeText(this, "Κάτι δεν πήγε καλά, δοκιμάστε ξανά", Toast.LENGTH_SHORT).show();
-
+            Snackbar.make(mRelativeLayout, "Κάτι δεν πήγε καλά, δοκιμάστε ξανά", Snackbar.LENGTH_LONG).show();
         }
     }
 

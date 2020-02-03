@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.dentallogs.API.Client;
 import com.example.dentallogs.Model.ModelLogin;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
@@ -29,15 +31,18 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private ProgressDialog loadingBar;
     private final static String TAG = "MainActivity login";
+    RelativeLayout mRelativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mRelativeLayout = findViewById(R.id.relativeLogin);
         loadingBar = new ProgressDialog(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
+
         TextView signIn = findViewById(R.id.signUpText);
         username = findViewById(R.id.usernameLogin);
         password = findViewById(R.id.passwordLogin);
@@ -57,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
         jsonObject.addProperty("email", usernameText);
         jsonObject.addProperty("password", passwordText);
         if (TextUtils.isEmpty(usernameText)) {
-            Toast.makeText(this, "Παρακαλώ πληκτρολογήστε το username σας", Toast.LENGTH_LONG).show();
+            Snackbar.make(mRelativeLayout, "Παρακαλώ πληκτρολογήστε το username σας", Snackbar.LENGTH_LONG).show();
             username.requestFocus();
         } else if (TextUtils.isEmpty(passwordText)) {
-            Toast.makeText(this, "Παρακαλώ πληκτρολογήστε τον κωδικό σας", Toast.LENGTH_LONG).show();
+            Snackbar.make(mRelativeLayout, "Παρακαλώ πληκτρολογήστε τον κωδικό σας", Snackbar.LENGTH_LONG).show();
         } else if (password.length() < 4) {
             password.setError("Ο κωδικός πρέπει να περιέχει τουλάχιστον 6 χαρακτήρες...");
             password.requestFocus();
@@ -79,16 +84,16 @@ public class MainActivity extends AppCompatActivity {
                     if (response.code() == 200) {
                         ModelLogin[] modelLogin = response.body();
                         loadingBar.dismiss();
-                        Toast.makeText(MainActivity.this, "Επιτυχής σύνδεση", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Επιτυχής σύνδεση", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, LabSelectionActivity.class);
                         startActivity(intent);
                     } else if (response.code() == 302) {
-                        Toast.makeText(MainActivity.this, "Λάθος στοιχεία, προσπαθήστε ξανά", Toast.LENGTH_LONG).show();
+                        Snackbar.make(mRelativeLayout, "Λάθος στοιχεία, προσπαθήστε ξανά", Snackbar.LENGTH_LONG).show();
                         loadingBar.dismiss();
                     } else if (response.code() == 304) {
-                        Toast.makeText(MainActivity.this, "Ο λογαριασμός δεν έχει ενεργοποιηθεί ακόμα", Toast.LENGTH_LONG).show();
+                        Snackbar.make(mRelativeLayout, "Ο λογαριασμός δεν έχει ενεργοποιηθεί ακόμα", Snackbar.LENGTH_LONG).show();
                     } else if (response.code() == 306) {
-                        Toast.makeText(MainActivity.this, "Ο Λογαριασμός δεν βρέθηκε", Toast.LENGTH_LONG).show();
+                        Snackbar.make(mRelativeLayout, "Ο Λογαριασμός δεν βρέθηκε", Snackbar.LENGTH_LONG).show();
                     }
                 }
 

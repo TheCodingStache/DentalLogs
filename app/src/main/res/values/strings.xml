@@ -39,6 +39,7 @@
     <string name="material">Yλικό</string>
     <string name="atomic">Ατομικό</string>
     <string name="basic">Βασικό</string>
+    <string name="message">Επιλέξτε τον τεχνικό που θέλετε να επικοινωνήσετε</string>
 
 
 </resources>
