@@ -13,12 +13,12 @@ import retrofit2.http.POST;
 
 public interface Requests {
     @POST("doctor/signin")
-    Call<ModelLogin[]> login(
+    Call<ModelLogin> login(
             @Body JsonObject jsonObject
     );
 
     @FormUrlEncoded
-    @POST("actions/id_register")
+    @POST("actions/signup")
     Call<ModelSignUp> signup(
             @Field("email") String email,
             @Field("username") String identification,

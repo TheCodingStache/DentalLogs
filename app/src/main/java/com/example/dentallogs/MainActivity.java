@@ -1,14 +1,11 @@
 package com.example.dentallogs;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -23,31 +20,24 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonObject;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Serializable {
     FloatingActionButton logIn;
     private EditText username;
     private EditText password;
-    private boolean doubleBackToExitPressedOnce = false;
     private ProgressDialog loadingBar;
+    ModelLogin modelLogin;
+    ArrayList<ModelLogin> modelList;
 
     private final static String TAG = "MainActivity login";
     RelativeLayout mRelativeLayout;
     boolean connected = false;
-
-    @Override
-    public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            finishActivity(R.layout.activity_main);
-            finish();
-        }
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Πηγαίνετε πίσω μία ακόμη φορά για να αποσυνδεθείτε", Toast.LENGTH_SHORT).show();
-        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +48,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            //we are connected to a network
-            connected = true;
-        }
-        else
-            connected = false;
+        modelList = new ArrayList<>();
         TextView signIn = findViewById(R.id.signUpText);
         username = findViewById(R.id.usernameLogin);
         password = findViewById(R.id.passwordLogin);
@@ -98,19 +81,23 @@ public class MainActivity extends AppCompatActivity {
             loadingBar.setMessage("Παρακαλώ περιμένετε");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            Call<ModelLogin[]> call = Client
+            Call<ModelLogin> call = Client
                     .getInstance()
                     .getApi()
                     .login(jsonObject);
-            call.enqueue(new Callback<ModelLogin[]>() {
+            call.enqueue(new Callback<ModelLogin>() {
                 @Override
-                public void onResponse(Call<ModelLogin[]> call, Response<ModelLogin[]> response) {
+                public void onResponse(Call<ModelLogin> call, Response<ModelLogin> response) {
                     if (response.code() == 200) {
-                        ModelLogin[] modelLogin = response.body();
+                        modelLogin = response.body();
                         loadingBar.dismiss();
                         Toast.makeText(MainActivity.this, "Επιτυχής σύνδεση", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, LabSelectionActivity.class);
-                        startActivity(intent);
+                        String socketID;
+                        String username;
+                        assert modelLogin != null;
+                        Intent transfer = new Intent(MainActivity.this, LabSelectionActivity.class);
+                        startActivity(transfer);
+
                     } else if (response.code() == 302) {
                         Snackbar.make(mRelativeLayout, "Λάθος στοιχεία, προσπαθήστε ξανά", Snackbar.LENGTH_LONG).show();
                         loadingBar.dismiss();
@@ -122,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<ModelLogin[]> call, Throwable t) {
+                public void onFailure(Call<ModelLogin> call, Throwable t) {
 
                 }
             });

@@ -2,6 +2,7 @@ package com.example.dentallogs;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -30,10 +31,14 @@ import com.example.dentallogs.Model.AtomikoVasiko;
 import com.example.dentallogs.Model.ColorModel;
 import com.example.dentallogs.Model.Face;
 import com.example.dentallogs.Model.Job;
+import com.example.dentallogs.Model.ModelLogin;
 import com.example.dentallogs.Model.Sex;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -51,10 +56,15 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
     DatePickerDialog mDatePickerDialog;
     RelativeLayout mRelativeLayout;
     ImageView back;
-
+    private Socket iSocket;
+    private static final String URL = "https://88866de6.ngrok.io/";
+    private String authToken = "";
+    Context mContext;
+    Socket mSocket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_menu_selection);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -91,7 +101,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             int year = mCalendar.get(Calendar.YEAR);
 
             mDatePickerDialog = new DatePickerDialog(SpinnerSelectionActivity.this, (view, year1, month1, dayOfMonth)
-                    -> date.setText(dayOfMonth + "/" + (month1+1) + "/" + year1), year, month, day );
+                    -> date.setText(dayOfMonth + "/" + (month1 + 1) + "/" + year1), year, month, day);
             mDatePickerDialog.show();
         });
 
@@ -398,12 +408,15 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
+            iSocket.emit("EventName","haha");
+
             Intent intent = new Intent(SpinnerSelectionActivity.this, ResultActivity.class);
-            intent.putExtra("sex", sex);
-            intent.putExtra("face", face);
-            intent.putExtra("job", job);
-            intent.putExtra("color", colorModel);
-            intent.putExtra("atomikovasiko", mAtomikoVasiko);
+//            intent.putExtra("sex", sex);
+//            intent.putExtra("face", face);
+//            intent.putExtra("job", job);
+//            intent.putExtra("color", colorModel);
+//            intent.putExtra("atomikovasiko", mAtomikoVasiko);
+
             startActivity(intent);
         });
 
@@ -564,6 +577,10 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                             CAMERA_REQUEST);
                 });
         myAlertDialog.show();
+    }
+
+    private Socket getSocketInstance() {
+        return iSocket;
     }
 
 }

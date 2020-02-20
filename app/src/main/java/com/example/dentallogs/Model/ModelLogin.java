@@ -3,13 +3,24 @@ package com.example.dentallogs.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ModelLogin {
+import java.io.Serializable;
+
+public class ModelLogin implements Serializable {
     @Expose
-    @SerializedName("email")
+    @SerializedName("username")
     private String username;
     @Expose
-    @SerializedName("password")
-    private String password;
+    @SerializedName("socketID")
+    private String socketID;
+
+    public ModelLogin(String username, String socketID) {
+        this.username = username;
+        this.socketID = socketID;
+    }
+
+    public ModelLogin() {
+
+    }
 
     public String getUsername() {
         return username;
@@ -19,21 +30,11 @@ public class ModelLogin {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSocketID() {
+        return socketID;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSocketID(String socketID) {
+        this.socketID = socketID;
     }
-
-    public ModelLogin(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    public ModelLogin() {
-
-    }
-
 }
