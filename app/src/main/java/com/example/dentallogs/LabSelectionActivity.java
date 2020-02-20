@@ -80,10 +80,7 @@ public class LabSelectionActivity extends AppCompatActivity {
 
                     setUpRecyclerView(arrayList);
 
-                }, error -> {
-            Log.d(TAG, "retrieveTechnicians: ");
-
-        });
+                }, error -> Log.d(TAG, "retrieveTechnicians: "));
 
 
         requestQueue = Volley.newRequestQueue(this);
