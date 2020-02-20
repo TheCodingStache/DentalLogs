@@ -72,7 +72,7 @@ public class LabSelectionActivity extends AppCompatActivity {
     private void retrieveTechnicians() {
 
         StringRequest stringRequestMovies = new StringRequest(Request.Method.GET, URL,
-                (Response.Listener<String>) response -> {
+                response -> {
                     pb.setVisibility(View.GONE);
                     GsonBuilder builder = new GsonBuilder();
                     Gson gson = builder.create();
@@ -80,7 +80,7 @@ public class LabSelectionActivity extends AppCompatActivity {
 
                     setUpRecyclerView(arrayList);
 
-                }, (Response.ErrorListener) error -> {
+                }, error -> {
             Log.d(TAG, "retrieveTechnicians: ");
 
         });
