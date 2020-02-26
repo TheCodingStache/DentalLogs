@@ -1,11 +1,11 @@
 package com.example.dentallogs.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,6 +35,7 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
     @Override
     public MyAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_lab_layout, parent, false);
+
         return new MyAdapterViewHolder(v);
     }
 
@@ -42,8 +43,13 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
     @Override
     public void onBindViewHolder(@NonNull MyAdapterViewHolder holder, int position) {
         Body techList = mTechLists.get(position);
-        holder.tech.setText("username " + techList.getUsername());
-        holder.socketIDView.setText("socketID " + techList.getSocketID());
+        holder.tech.setText(techList.getUsername());
+        holder.socketIDView.setText(techList.getSocketID());
+        holder.container.setOnClickListener(v1 -> {
+            Intent i = new Intent(context, SpinnerSelectionActivity.class);
+            i.putExtra("socketID", techList.getSocketID());
+            context.startActivity(i);
+        });
     }
 
 
@@ -58,6 +64,7 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
         CardView cardView;
         CircleImageView techPhoto;
         TextView socketIDView;
+        RelativeLayout container;
 
         public MyAdapterViewHolder(final View itemView) {
             super(itemView);
@@ -66,11 +73,12 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
             cardView = itemView.findViewById(R.id.cardView);
             techPhoto = itemView.findViewById(R.id.technicianPhoto);
             socketIDView = itemView.findViewById(R.id.socketID);
-            cardView.setOnClickListener(v -> {
-                Intent intent = new Intent(context, SpinnerSelectionActivity.class);
-                itemView.getContext().startActivity(intent);
-                ((Activity) context).finish();
-            });
+            container = itemView.findViewById(R.id.container);
+//            cardView.setOnClickListener(v -> {
+//                Intent intent = new Intent(context, SpinnerSelectionActivity.class);
+//                itemView.getContext().startActivity(intent);
+//                ((Activity) context).finish();
+//            });
         }
     }
 }

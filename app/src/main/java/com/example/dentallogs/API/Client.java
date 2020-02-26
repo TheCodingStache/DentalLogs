@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class Client {
     private Retrofit retrofit;
-    private String BASE_URL = "https://93f7c150.ngrok.io/";
+    private String BASE_URL = "https://dentalfinalgithubrepository.herokuapp.com/";
     private static Client mInstance;
     OkHttpClient okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
     private Client() {

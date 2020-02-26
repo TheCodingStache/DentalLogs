@@ -22,7 +22,6 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,14 +30,11 @@ import com.example.dentallogs.Model.AtomikoVasiko;
 import com.example.dentallogs.Model.ColorModel;
 import com.example.dentallogs.Model.Face;
 import com.example.dentallogs.Model.Job;
-import com.example.dentallogs.Model.ModelLogin;
 import com.example.dentallogs.Model.Sex;
-import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -61,15 +57,17 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
     private String authToken = "";
     Context mContext;
     Socket mSocket;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_menu_selection);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
+        String x = getIntent().getStringExtra("socketID");
         EditText comment = findViewById(R.id.comment);
+        comment.setText(x);
         back = findViewById(R.id.back);
         FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
         mRelativeLayout = findViewById(R.id.relativeSelection);
@@ -408,17 +406,15 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
-            iSocket.emit("EventName","haha");
-
-            Intent intent = new Intent(SpinnerSelectionActivity.this, ResultActivity.class);
-//            intent.putExtra("sex", sex);
-//            intent.putExtra("face", face);
-//            intent.putExtra("job", job);
-//            intent.putExtra("color", colorModel);
-//            intent.putExtra("atomikovasiko", mAtomikoVasiko);
-
-            startActivity(intent);
+            Intent result = new Intent(SpinnerSelectionActivity.this, ResultActivity.class);
+            result.putExtra("sex", sex);
+            result.putExtra("face", face);
+            result.putExtra("job", job);
+            result.putExtra("color", colorModel);
+            result.putExtra("atomikovasiko", mAtomikoVasiko);
+            startActivity(result);
         });
+
 
         ArrayList<String> thermo = new ArrayList<>();
         thermo.add(0, "Θερμοπλαστική/Ακρυλική");
@@ -459,7 +455,9 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         third.setAdapter(thirdSpinnerAdapter);
         forth.setAdapter(forthSpinnerAdapter);
 
-        floatingActionButton.setOnClickListener(v -> {
+        floatingActionButton.setOnClickListener(v ->
+
+        {
             Intent intent = new Intent(SpinnerSelectionActivity.this, ChatActivity.class);
             startActivity(intent);
         });
@@ -524,13 +522,10 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back = new Intent(SpinnerSelectionActivity.this, LabSelectionActivity.class);
-                startActivity(back);
-                finish();
-            }
+        back.setOnClickListener(v -> {
+            Intent back = new Intent(SpinnerSelectionActivity.this, LabSelectionActivity.class);
+            startActivity(back);
+            finish();
         });
     }
 
@@ -579,8 +574,5 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         myAlertDialog.show();
     }
 
-    private Socket getSocketInstance() {
-        return iSocket;
-    }
 
 }
