@@ -3,12 +3,13 @@ package com.example.dentallogs.Model;
 public class Body {
     private String socketID;
     private String username;
+    private String _id;
 
-    public Body(String socketID, String username) {
+    public Body(String socketID, String username, String _id) {
         this.socketID = socketID;
         this.username = username;
+        this._id = _id;
     }
-
 
 
     public String getSocketID() {
@@ -27,5 +28,11 @@ public class Body {
         this.username = username;
     }
 
+    public String get_id() {
+        return _id;
+    }
 
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 }

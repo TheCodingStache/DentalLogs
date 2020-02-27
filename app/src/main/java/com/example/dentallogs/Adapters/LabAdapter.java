@@ -1,5 +1,6 @@
 package com.example.dentallogs.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -35,7 +36,6 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
     @Override
     public MyAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_lab_layout, parent, false);
-
         return new MyAdapterViewHolder(v);
     }
 
@@ -48,7 +48,10 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
         holder.container.setOnClickListener(v1 -> {
             Intent i = new Intent(context, SpinnerSelectionActivity.class);
             i.putExtra("socketID", techList.getSocketID());
+            i.putExtra("username", techList.getUsername());
+            i.putExtra("_id", techList.get_id());
             context.startActivity(i);
+            ((Activity) context).finish();
         });
     }
 
@@ -60,8 +63,8 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
 
     public class MyAdapterViewHolder extends RecyclerView.ViewHolder {
         TextView tech;
-        //        TextView location;
         CardView cardView;
+        TextView _id;
         CircleImageView techPhoto;
         TextView socketIDView;
         RelativeLayout container;
@@ -69,7 +72,7 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
         public MyAdapterViewHolder(final View itemView) {
             super(itemView);
             tech = itemView.findViewById(R.id.tech);
-//            location = itemView.findViewById(R.id.location);
+            _id = itemView.findViewById(R.id._id);
             cardView = itemView.findViewById(R.id.cardView);
             techPhoto = itemView.findViewById(R.id.technicianPhoto);
             socketIDView = itemView.findViewById(R.id.socketID);

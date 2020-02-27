@@ -11,7 +11,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/darkGrey">
+        android:background="@color/white">
 
 
         <LinearLayout
@@ -36,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                android:textAlignment="center"
                 android:text="Πληροφορίες Ασθενή"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
@@ -100,8 +101,9 @@
                 android:id="@+id/dateText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:layout_margin="20dp"
-                android:text="Ημερομηνία Παραλαβής: "
+                android:text="Ημερομηνία Παραλαβής"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -129,6 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:text="Γένος Ασθενή"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -165,6 +168,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                android:textAlignment="center"
                 android:text="Σχήμα προσώπου"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
@@ -217,6 +221,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                android:textAlignment="center"
                 android:text="Είδος Εργασίας"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
@@ -317,6 +322,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
+                android:textAlignment="center"
                 android:text="Χρώμα"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
@@ -434,6 +440,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
+                android:textAlignment="center"
                 android:text="Επιλογή Δοντιών"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
@@ -458,6 +465,7 @@
                 android:layout_margin="20dp"
                 android:orientation="horizontal">
 
+
                 <EditText
                     android:id="@+id/comment"
                     android:layout_width="match_parent"
@@ -470,6 +478,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                android:textAlignment="center"
                 android:text="Επιλογή Φωτογραφίας"
                 android:textColor="@color/black"
                 android:textSize="24sp" />

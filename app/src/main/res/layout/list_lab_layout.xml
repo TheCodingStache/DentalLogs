@@ -36,25 +36,36 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/welcome"
-                android:src="@drawable/billgates" />
+                android:src="@drawable/dentist" />
 
             <TextView
                 android:id="@+id/tech"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_centerHorizontal="true"
                 android:padding="8dp"
+                android:textStyle="bold"
                 android:text="Technician"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/socketID"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tech"
+                android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="Socket" />
+            <TextView
+                android:id="@+id/_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/socketID"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="_id" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

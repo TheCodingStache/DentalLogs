@@ -1,5 +1,6 @@
 package com.example.dentallogs;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,6 +49,8 @@ public class LabSelectionActivity extends AppCompatActivity {
     String username = modelLogin.getUsername();
     String socketID = modelLogin.getSocketID();
     SwipeRefreshLayout swipeRefreshLayout;
+    Activity mActivity;
+    LabAdapter myAdapter;
 
     @Override
     public void onBackPressed() {
@@ -63,6 +66,7 @@ public class LabSelectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mActivity = new Activity();
         setContentView(R.layout.activity_lab_selection);
         pb = new ProgressBar(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -70,28 +74,54 @@ public class LabSelectionActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         recyclerView = findViewById(R.id.recyclerView);
         arrayList = new ArrayList<>();
+        myAdapter = new LabAdapter(arrayList, this);
+        recyclerView.setAdapter(myAdapter);
         swipeRefreshLayout = findViewById(R.id.swipe_container);
+        swipeRefreshLayout.setRefreshing(false);
         retrieveTechnicians();
-        swipeRefreshLayout.setOnRefreshListener(this::retrieveTechnicians);
-
+//        swipeRefreshLayout.setOnRefreshListener(this::retrieveTechnicians);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            Snackbar.make(recyclerView, "Είναι ήδη ανανεωμένη η λίστα", Snackbar.LENGTH_SHORT).show();
+            swipeRefreshLayout.setRefreshing(false);
+        });
         try {
             String URL = "https://dentalfinalgithubrepository.herokuapp.com/";
             socket = IO.socket(URL);
             socket.connect();
-//            socket.on("loginTechnician",socketID);
+            socket.on("loginTechnician", args -> runOnUiThread(() -> {
+                retrieveTechnicians();
+                Snackbar.make(recyclerView, "Η λίστα ανανεώθηκε", Snackbar.LENGTH_SHORT).show();
+//                JSONObject data = (JSONObject) args[0];
+//                try {
+//                    String name = data.getString("username");
+//                    String message = data.getString("socketID");
+//                    Snackbar.make(recyclerView, name + " " + message, Snackbar.LENGTH_LONG).show();
+//                    Body body = null;
+//                    int matchedItemIndex = -1;
+//                    for(Body body1 : arrayList){
+//                        if(body1.getUsername().equals(name)){
+//                          Snackbar.make(recyclerView, "vrethike o komis molismenos", Snackbar.LENGTH_SHORT).show();
+//                        } else {
+//                            Snackbar.make(recyclerView, "  vrethike MOLISMENOS O KONTOS EPEIDI GAMITHIKE STO MONOKLINO ME TON KOMI", Snackbar.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+            }));
         } catch (URISyntaxException e) {
             e.printStackTrace();
 
         }
         Snackbar.make(recyclerView, R.string.message, Snackbar.LENGTH_LONG).show();
-
     }
+
 
     private void retrieveTechnicians() {
         swipeRefreshLayout.setRefreshing(true);
         StringRequest stringRequestMovies = new StringRequest(Request.Method.GET, URL,
                 response -> {
-            swipeRefreshLayout.setRefreshing(false);
+                    swipeRefreshLayout.setRefreshing(false);
                     GsonBuilder builder = new GsonBuilder();
                     Gson gson = builder.create();
                     arrayList = Arrays.asList(gson.fromJson(response, Body[].class));
@@ -100,7 +130,7 @@ public class LabSelectionActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequestMovies);
     }
-    
+
 
     private void setUpRecyclerView(List<Body> model) {
         LabAdapter labAdapter = new LabAdapter(model, this);
@@ -108,8 +138,5 @@ public class LabSelectionActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(labAdapter);
         recyclerView.setItemAnimator(null);
-
-
     }
-
 }

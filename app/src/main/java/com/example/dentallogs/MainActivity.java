@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         } else if (TextUtils.isEmpty(passwordText)) {
             Snackbar.make(mRelativeLayout, "Παρακαλώ πληκτρολογήστε τον κωδικό σας", Snackbar.LENGTH_LONG).show();
         } else if (password.length() < 4) {
-            password.setError("Ο κωδικός πρέπει να περιέχει τουλάχιστον 6 χαρακτήρες...");
+            password.setError("Ο κωδικός πρέπει να περιέχει τουλάχιστον 4 χαρακτήρες...");
             password.requestFocus();
         } else {
             loadingBar.setTitle("Γίνεται σύνδεση");
@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                         assert modelLogin != null;
                         Intent transfer = new Intent(MainActivity.this, LabSelectionActivity.class);
                         startActivity(transfer);
-
                     } else if (response.code() == 302) {
                         Snackbar.make(mRelativeLayout, "Λάθος στοιχεία, προσπαθήστε ξανά", Snackbar.LENGTH_LONG).show();
                         loadingBar.dismiss();

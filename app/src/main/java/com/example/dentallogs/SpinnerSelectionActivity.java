@@ -31,10 +31,16 @@ import com.example.dentallogs.Model.ColorModel;
 import com.example.dentallogs.Model.Face;
 import com.example.dentallogs.Model.Job;
 import com.example.dentallogs.Model.Sex;
+import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.JsonObject;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -44,6 +50,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
     private Sex sex;
     private Face face;
     private Job job;
+    private Socket socket;
     private AtomikoVasiko mAtomikoVasiko;
     private ColorModel colorModel;
     private ImageView photo;
@@ -53,10 +60,16 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
     RelativeLayout mRelativeLayout;
     ImageView back;
     private Socket iSocket;
-    private static final String URL = "https://88866de6.ngrok.io/";
     private String authToken = "";
     Context mContext;
     Socket mSocket;
+    String username;
+    String socketID;
+    private String URL = "https://dentalfinalgithubrepository.herokuapp.com/";
+    EditText comment;
+    String senderSocketID;
+    String senderUsername;
+    String _id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +78,30 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-        String x = getIntent().getStringExtra("socketID");
-        EditText comment = findViewById(R.id.comment);
-        comment.setText(x);
+        try {
+            socket = IO.socket(URL);
+            socket.connect();
+            socket.on("loginTechnician", args -> runOnUiThread(() -> {
+                Snackbar.make(mRelativeLayout, "Η λίστα ανανεώθηκε", Snackbar.LENGTH_SHORT).show();
+                JSONObject data = (JSONObject) args[0];
+                try {
+                    username = data.getString("username");
+                    socketID = data.getString("socketID");
+                    if (senderUsername.equals(username)) {
+                        senderSocketID = socketID;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        comment = findViewById(R.id.comment);
+        senderSocketID = getIntent().getStringExtra("socketID");
+        senderUsername = getIntent().getStringExtra("username");
+        _id = getIntent().getStringExtra("_id");
         back = findViewById(R.id.back);
         FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
         mRelativeLayout = findViewById(R.id.relativeSelection);
@@ -412,6 +446,9 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             result.putExtra("job", job);
             result.putExtra("color", colorModel);
             result.putExtra("atomikovasiko", mAtomikoVasiko);
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("recieversocketID", senderSocketID);
+            socket.emit("sendToTechnician", jsonObject);
             startActivity(result);
         });
 
@@ -466,7 +503,6 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Θερμοπλαστική")) {
-                } else {
                     first.getSelectedItem().toString();
                     String item = parent.getItemAtPosition(position).toString();
                 }
@@ -480,7 +516,6 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("PMMA")) {
-                } else {
                     second.getSelectedItem().toString();
                     String item = parent.getItemAtPosition(position).toString();
                 }
@@ -495,7 +530,6 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Μέταλλο")) {
-                } else {
                     third.getSelectedItem().toString();
                     String item = parent.getItemAtPosition(position).toString();
                 }
@@ -510,8 +544,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Ζιρκόνια")) {
-                } else {
-                    String i = forth.getSelectedItem().toString();
+                    forth.getSelectedItem().toString();
                     String item = parent.getItemAtPosition(position).toString();
                 }
             }
@@ -559,7 +592,6 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                     startActivityForResult(
                             pictureActionIntent,
                             GALLERY_PICTURE);
-
                 });
 
         myAlertDialog.setNegativeButton("ΚΑΜΕΡΑ",
