@@ -261,14 +261,14 @@
                 android:weightSum="1">
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/thermoplastiki"
+                    android:id="@+id/kinitiSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".5"
                     android:spinnerMode="dialog" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/PMMA"
+                    android:id="@+id/akinitiSpinner"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".5"
@@ -284,39 +284,20 @@
                 android:weightSum="1">
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/metallo"
+                    android:id="@+id/kinitiItems"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".5"
                     android:spinnerMode="dialog" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/zirkonia"
+                    android:id="@+id/akinitiItems"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".5"
                     android:spinnerMode="dialog" />
             </LinearLayout>
 
-            <RadioGroup
-                android:id="@+id/atomikovasiko"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:orientation="vertical">
-
-                <RadioButton
-                    android:id="@+id/atomiko"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Ατομικό Δισκάριο" />
-
-                <RadioButton
-                    android:id="@+id/vasiki"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Βασική Πλάκα" />
-            </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
