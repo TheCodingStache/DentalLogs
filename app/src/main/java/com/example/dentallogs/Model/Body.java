@@ -1,24 +1,36 @@
 package com.example.dentallogs.Model;
 
+
+import com.google.gson.annotations.SerializedName;
+
 public class Body {
     private String socketID;
     private String username;
-    private String _id;
+    @SerializedName("_id")
+    private String id;
 
-    public Body(String socketID, String username, String _id) {
+    public Body(String socketID, String username, String id) {
         this.socketID = socketID;
         this.username = username;
-        this._id = _id;
-    }
-
-
-    public String getSocketID() {
-        return socketID;
+        this.id = id;
     }
 
     public void setSocketID(String socketID) {
         this.socketID = socketID;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getSocketID() {
+        return socketID;
+    }
+
 
     public String getUsername() {
         return username;
@@ -27,12 +39,5 @@ public class Body {
     public void setUsername(String username) {
         this.username = username;
     }
-
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
-    }
 }
+

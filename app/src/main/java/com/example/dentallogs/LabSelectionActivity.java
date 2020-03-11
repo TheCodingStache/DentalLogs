@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -30,7 +29,9 @@ import com.google.gson.GsonBuilder;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -43,7 +44,7 @@ public class LabSelectionActivity extends AppCompatActivity {
     public RequestQueue requestQueue;
     List<Body> arrayList;
     private boolean doubleBackToExitPressedOnce = false;
-    private String URL = "https://dentalfinalgithubrepository.herokuapp.com/doctor/getTechnicians";
+    private String URL = "https://dentallogs.herokuapp.com/doctor/getTechnicians";
     private final String TAG = "gelaw";
     ModelLogin modelLogin = new ModelLogin();
     String username = modelLogin.getUsername();
@@ -85,7 +86,7 @@ public class LabSelectionActivity extends AppCompatActivity {
             swipeRefreshLayout.setRefreshing(false);
         });
         try {
-            String URL = "https://dentalfinalgithubrepository.herokuapp.com/";
+            String URL = "https://dentallogs.herokuapp.com/";
             socket = IO.socket(URL);
             socket.connect();
             socket.on("loginTechnician", args -> runOnUiThread(() -> {
@@ -118,6 +119,7 @@ public class LabSelectionActivity extends AppCompatActivity {
 
 
     private void retrieveTechnicians() {
+        String apiKey = "592a1600-7c1a-44d6-9215-88517da7558f";
         swipeRefreshLayout.setRefreshing(true);
         StringRequest stringRequestMovies = new StringRequest(Request.Method.GET, URL,
                 response -> {
@@ -126,7 +128,16 @@ public class LabSelectionActivity extends AppCompatActivity {
                     Gson gson = builder.create();
                     arrayList = Arrays.asList(gson.fromJson(response, Body[].class));
                     setUpRecyclerView(arrayList);
-                }, error -> Log.d(TAG, "retrieveTechnicians: "));
+                },
+                error -> {
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("secret_api_key", apiKey);
+                return params;
+            }
+        };
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequestMovies);
     }

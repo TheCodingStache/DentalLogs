@@ -12,14 +12,31 @@ public class ModelLogin implements Serializable {
     @Expose
     @SerializedName("socketID")
     private String socketID;
+    @Expose
+    @SerializedName("_id")
+    String id;
+    @Expose
+    @SerializedName("email")
+    String email;
 
-    public ModelLogin(String username, String socketID) {
+    public String getId() {
+        return id;
+    }
+
+
+    public ModelLogin(String username, String socketID, String id, String email) {
         this.username = username;
+        this.id = id;
         this.socketID = socketID;
+        this.email = email;
     }
 
     public ModelLogin() {
 
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getUsername() {

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -47,6 +48,7 @@ import java.util.Calendar;
 public class SpinnerSelectionActivity extends AppCompatActivity {
     protected static final int CAMERA_REQUEST = 0;
     protected static final int GALLERY_PICTURE = 1;
+    String item;
     private Sex sex;
     private Face face;
     private Job job;
@@ -59,22 +61,42 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
     DatePickerDialog mDatePickerDialog;
     RelativeLayout mRelativeLayout;
     ImageView back;
+    ArrayList<String> thermo;
+    ArrayList<String> pmma;
+    ArrayList<String> zirkonia;
+    ArrayList<String> metallo;
     private Socket iSocket;
     private String authToken = "";
     Context mContext;
     Socket mSocket;
     String username;
     String socketID;
-    private String URL = "https://dentalfinalgithubrepository.herokuapp.com/";
+    private String URL = "https://dentallogs.herokuapp.com/";
     EditText comment;
     String senderSocketID;
     String senderUsername;
     String _id;
+    String senderID;
+    String doctorName;
+    EditText patientName;
+    EditText patientFullName;
+    String doctorID;
+    private String SHARED_PREFS = "sharedPrefs";
+    String color = "";
+    String faceSender = "";
+    String jobSender = "";
+    String sexSender = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_selection);
+        doctorName = getIntent().getStringExtra("doctorName");
+        doctorID = getIntent().getStringExtra("doctorID");
+        patientName = findViewById(R.id.name);
+        patientFullName = findViewById(R.id.lastname);
+        JsonObject jsonObject = new JsonObject();
+//        _id = jsonObject.toString();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -152,8 +174,10 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         sexGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.woman) {
                 sex.setFemale(true);
+                sexSender = "Γυναίκα";
                 sex.setMale(false);
             } else if (checkedId == R.id.man) {
+                sexSender = "Άντρας";
                 sex.setMale(true);
                 sex.setFemale(false);
             }
@@ -161,21 +185,25 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         faceGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.triangle) {
                 face.setTriangle(true);
+                faceSender = "Τρίγωνο";
                 face.setSquare(false);
                 face.setCircle(false);
             } else if (checkedId == R.id.square) {
                 face.setSquare(true);
+                faceSender = "Τετράγωνο";
                 face.setTriangle(false);
                 face.setCircle(false);
             } else if (checkedId == R.id.circle) {
                 face.setCircle(true);
                 face.setTriangle(false);
+                faceSender = "Κυκλικό";
                 face.setSquare(false);
             }
         });
         jobGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.kinitiCheck) {
                 job.setKiniti(true);
+                jobSender = "Κινητή";
                 job.setAkiniti(false);
                 second.setVisibility(View.INVISIBLE);
                 third.setVisibility(View.INVISIBLE);
@@ -186,6 +214,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             } else if (checkedId == R.id.akinitiCheck) {
                 job.setAkiniti(true);
                 job.setKiniti(false);
+                jobSender = "Ακίνητη";
                 first.setVisibility(View.INVISIBLE);
                 atomiko.setVisibility(View.INVISIBLE);
                 vasiki.setVisibility(View.INVISIBLE);
@@ -198,6 +227,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         colorGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.a1) {
                 colorModel.setA1(true);
+                color = "a1";
                 colorModel.setA2(false);
                 colorModel.setA35(false);
                 colorModel.setA4(false);
@@ -215,6 +245,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             } else if (checkedId == R.id.a2) {
                 colorModel.setA1(false);
                 colorModel.setA2(true);
+                color = "a2";
                 colorModel.setA35(false);
                 colorModel.setA4(false);
                 colorModel.setB1(false);
@@ -232,6 +263,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setA1(false);
                 colorModel.setA2(false);
                 colorModel.setA35(true);
+                color = "a3";
                 colorModel.setA4(false);
                 colorModel.setB1(false);
                 colorModel.setB2(false);
@@ -249,6 +281,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setA2(false);
                 colorModel.setA35(false);
                 colorModel.setA4(true);
+                color = "a4";
                 colorModel.setB1(false);
                 colorModel.setB2(false);
                 colorModel.setB3(false);
@@ -266,6 +299,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setA35(false);
                 colorModel.setA4(false);
                 colorModel.setB1(true);
+                color = "b1";
                 colorModel.setB2(false);
                 colorModel.setB3(false);
                 colorModel.setB4(false);
@@ -283,6 +317,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setA4(false);
                 colorModel.setB1(false);
                 colorModel.setB2(true);
+                color = "b2";
                 colorModel.setB3(false);
                 colorModel.setB4(false);
                 colorModel.setC1(false);
@@ -300,6 +335,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setB1(false);
                 colorModel.setB2(false);
                 colorModel.setB3(true);
+                color = "b3";
                 colorModel.setB4(false);
                 colorModel.setC1(false);
                 colorModel.setC2(false);
@@ -315,8 +351,9 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setA4(false);
                 colorModel.setB1(false);
                 colorModel.setB2(false);
-                colorModel.setB3(true);
-                colorModel.setB4(false);
+                colorModel.setB3(false);
+                colorModel.setB4(true);
+                color = "b4";
                 colorModel.setC1(false);
                 colorModel.setC2(false);
                 colorModel.setC3(false);
@@ -334,6 +371,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setB3(false);
                 colorModel.setB4(false);
                 colorModel.setC1(true);
+                color = "c1";
                 colorModel.setC2(false);
                 colorModel.setC3(false);
                 colorModel.setC4(false);
@@ -351,6 +389,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setB4(false);
                 colorModel.setC1(false);
                 colorModel.setC2(true);
+                color = "c2";
                 colorModel.setC3(false);
                 colorModel.setC4(false);
                 colorModel.setD2(false);
@@ -368,6 +407,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setC1(false);
                 colorModel.setC2(false);
                 colorModel.setC3(true);
+                color = "c3";
                 colorModel.setC4(false);
                 colorModel.setD2(false);
                 colorModel.setD3(false);
@@ -385,6 +425,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setC2(false);
                 colorModel.setC3(false);
                 colorModel.setC4(true);
+                color = "c4";
                 colorModel.setD2(false);
                 colorModel.setD3(false);
                 colorModel.setD4(false);
@@ -402,6 +443,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setC3(false);
                 colorModel.setC4(false);
                 colorModel.setD2(true);
+                color = "d2";
                 colorModel.setD3(false);
                 colorModel.setD4(false);
             } else if (checkedId == R.id.d3) {
@@ -419,6 +461,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setC4(false);
                 colorModel.setD2(false);
                 colorModel.setD3(true);
+                color = "d3";
                 colorModel.setD4(false);
             } else if (checkedId == R.id.d4) {
                 colorModel.setA1(false);
@@ -436,6 +479,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 colorModel.setD2(false);
                 colorModel.setD3(false);
                 colorModel.setD4(true);
+                color = "d4";
             }
         });
 
@@ -446,14 +490,31 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             result.putExtra("job", job);
             result.putExtra("color", colorModel);
             result.putExtra("atomikovasiko", mAtomikoVasiko);
-            JsonObject jsonObject = new JsonObject();
+            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+            doctorID = sharedPreferences.getString("doctorID", "");
+            doctorName = sharedPreferences.getString("doctorName", "");
+            String name = patientName.getText().toString();
+            String lastName = patientFullName.getText().toString();
+            String c = comment.getText().toString();
             jsonObject.addProperty("recieversocketID", senderSocketID);
-            socket.emit("sendToTechnician", jsonObject);
+            jsonObject.addProperty("recieverUsername", senderUsername);
+            jsonObject.addProperty("senderID", doctorID);
+            jsonObject.addProperty("senderName", doctorName);
+            jsonObject.addProperty("firstName", name);
+            jsonObject.addProperty("lastName", lastName);
+            jsonObject.addProperty("comment", c);
+            jsonObject.addProperty("color", color);
+            jsonObject.addProperty("date", date.getText().toString());
+            jsonObject.addProperty("gender", sexSender);
+            jsonObject.addProperty("face", faceSender);
+            jsonObject.addProperty("category", jobSender);
+            jsonObject.addProperty("subCategory", item);
+            socket.emit("sendToTechnicianAndroid", jsonObject);
             startActivity(result);
         });
 
 
-        ArrayList<String> thermo = new ArrayList<>();
+        thermo = new ArrayList<>();
         thermo.add(0, "Θερμοπλαστική/Ακρυλική");
         thermo.add("Άκερς");
         thermo.add("Ολική οδοντοστοιχία");
@@ -461,18 +522,18 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         thermo.add("Επιοδιόρθωση");
         thermo.add("Αναγόμωση");
 
-        ArrayList<String> pmma = new ArrayList<>();
+        pmma = new ArrayList<>();
         pmma.add(0, "PMMA");
         pmma.add("Προσωρινές");
         pmma.add("Ένθετο/Επένθετο");
 
-        ArrayList<String> metallo = new ArrayList<>();
+        metallo = new ArrayList<>();
         metallo.add(0, "Μέταλλο");
         metallo.add("Μεταλλοκεραμική");
         metallo.add("Μέταλλο/Φ.Π");
         metallo.add("Όλικη Χύτη");
 
-        ArrayList<String> zirkonia = new ArrayList<>();
+        zirkonia = new ArrayList<>();
         zirkonia.add(0, "Ζιρκόνια");
         zirkonia.add("Διαστρωματική");
         zirkonia.add("Μονολιθική");
@@ -504,7 +565,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Θερμοπλαστική")) {
                     first.getSelectedItem().toString();
-                    String item = parent.getItemAtPosition(position).toString();
+                    item = parent.getItemAtPosition(position).toString();
                 }
             }
 
@@ -517,7 +578,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("PMMA")) {
                     second.getSelectedItem().toString();
-                    String item = parent.getItemAtPosition(position).toString();
+                    item = parent.getItemAtPosition(position).toString();
                 }
             }
 
@@ -531,7 +592,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Μέταλλο")) {
                     third.getSelectedItem().toString();
-                    String item = parent.getItemAtPosition(position).toString();
+                    item = parent.getItemAtPosition(position).toString();
                 }
             }
 
@@ -545,7 +606,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Ζιρκόνια")) {
                     forth.getSelectedItem().toString();
-                    String item = parent.getItemAtPosition(position).toString();
+                    item = parent.getItemAtPosition(position).toString();
                 }
             }
 

@@ -2,6 +2,7 @@ package com.example.dentallogs;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dentallogs.API.Client;
 import com.example.dentallogs.Model.ModelLogin;
-import com.github.nkzawa.socketio.client.Socket;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonObject;
@@ -35,7 +35,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     private ProgressDialog loadingBar;
     ModelLogin modelLogin;
     ArrayList<ModelLogin> modelList;
-
+    private String SHARED_PREFS = "sharedPrefs";
+    private String TEXT = "text";
+    private String TEXT1 = "text1";
     private final static String TAG = "MainActivity login";
     RelativeLayout mRelativeLayout;
     boolean connected = false;
@@ -93,17 +95,24 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                         modelLogin = response.body();
                         loadingBar.dismiss();
                         Toast.makeText(MainActivity.this, "Επιτυχής σύνδεση", Toast.LENGTH_SHORT).show();
-                        String socketID;
-                        String username;
-                        assert modelLogin != null;
+                        String id = modelLogin.getId();
+                        String doctor = modelLogin.getUsername();
+                        Log.d(TAG, "onResponse: " + doctor + " " + id);
                         Intent transfer = new Intent(MainActivity.this, LabSelectionActivity.class);
+                        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("doctorID", id);
+                        editor.putString("doctorName", doctor);
+                        editor.apply();
                         startActivity(transfer);
                     } else if (response.code() == 302) {
                         Snackbar.make(mRelativeLayout, "Λάθος στοιχεία, προσπαθήστε ξανά", Snackbar.LENGTH_LONG).show();
                         loadingBar.dismiss();
                     } else if (response.code() == 304) {
+                        loadingBar.dismiss();
                         Snackbar.make(mRelativeLayout, "Ο λογαριασμός δεν έχει ενεργοποιηθεί ακόμα", Snackbar.LENGTH_LONG).show();
                     } else if (response.code() == 306) {
+                        loadingBar.dismiss();
                         Snackbar.make(mRelativeLayout, "Ο Λογαριασμός δεν βρέθηκε", Snackbar.LENGTH_LONG).show();
                     }
                 }
