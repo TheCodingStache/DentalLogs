@@ -56,16 +56,8 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:padding="8dp"
+                android:visibility="gone"
                 android:text="Socket" />
-            <TextView
-                android:id="@+id/_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/socketID"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:padding="8dp"
-                android:text="_id" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

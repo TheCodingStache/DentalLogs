@@ -73,7 +73,6 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
         public MyAdapterViewHolder(final View itemView) {
             super(itemView);
             tech = itemView.findViewById(R.id.tech);
-            _id = itemView.findViewById(R.id._id);
             cardView = itemView.findViewById(R.id.cardView);
             techPhoto = itemView.findViewById(R.id.technicianPhoto);
             socketIDView = itemView.findViewById(R.id.socketID);

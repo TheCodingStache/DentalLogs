@@ -17,15 +17,8 @@ public interface Requests {
             @Body JsonObject jsonObject
     );
 
-    @FormUrlEncoded
-    @POST("actions/signup")
+    @POST("doctor/signup")
     Call<ModelSignUp> signup(
-            @Field("email") String email,
-            @Field("username") String identification,
-            @Field("password") String surname,
-            @Field("name") String lastnamelatin,
-            @Field("lastName") String firstname,
-            @Field("officeName") String firstnameLatin,
-            @Field("location") String born_location
+            @Body JsonObject jsonObject
     );
 }

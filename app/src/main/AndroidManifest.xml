@@ -27,33 +27,37 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ResultActivity"
-            android:fitsSystemWindows="true" android:screenOrientation="portrait" />
+        <activity
+            android:name=".ResultActivity"
+            android:fitsSystemWindows="true"
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".Adapters.ChatBoxAdapter"
             android:fitsSystemWindows="true"
-            android:screenOrientation="portrait"
-            ></activity>
+            android:screenOrientation="fullSensor"></activity>
         <activity
             android:name=".Chat.ChatActivity"
             android:fitsSystemWindows="true"
-            android:screenOrientation="portrait"
-            ></activity>
+            android:screenOrientation="fullSensor"></activity>
+        <activity
+            android:name=".HistoryActivity"
+            android:fitsSystemWindows="true"
+            android:screenOrientation="fullSensor"></activity>
         <activity
             android:name=".Chat.ChatBoxActivity"
             android:fitsSystemWindows="true"
-            android:screenOrientation="portrait"
-            ></activity>
+            android:screenOrientation="fullSensor"></activity>
         <activity
             android:name=".SpinnerSelectionActivity"
             android:fitsSystemWindows="true"
-            android:screenOrientation="portrait"
-            ></activity>
-        <activity android:name=".LabSelectionActivity"  android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"></activity>
+        <activity
+            android:name=".LabSelectionActivity"
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".MainActivity"
             android:fitsSystemWindows="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -62,7 +66,9 @@
         <activity
             android:name=".SignUpActivity"
             android:fitsSystemWindows="true"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="fullSensor">
+
+        </activity>
     </application>
 
 </manifest>

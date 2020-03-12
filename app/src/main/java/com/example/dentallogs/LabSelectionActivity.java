@@ -82,7 +82,7 @@ public class LabSelectionActivity extends AppCompatActivity {
         retrieveTechnicians();
 //        swipeRefreshLayout.setOnRefreshListener(this::retrieveTechnicians);
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            Snackbar.make(recyclerView, "Είναι ήδη ανανεωμένη η λίστα", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(recyclerView, "Η λίστα είναι ήδη ανανεωμένη", Snackbar.LENGTH_SHORT).show();
             swipeRefreshLayout.setRefreshing(false);
         });
         try {
@@ -91,7 +91,7 @@ public class LabSelectionActivity extends AppCompatActivity {
             socket.connect();
             socket.on("loginTechnician", args -> runOnUiThread(() -> {
                 retrieveTechnicians();
-                Snackbar.make(recyclerView, "Η λίστα ανανεώθηκε", Snackbar.LENGTH_SHORT).show();
+//                Snackbar.make(recyclerView, "Η λίστα ανανεώθηκε", Snackbar.LENGTH_SHORT).show();
 //                JSONObject data = (JSONObject) args[0];
 //                try {
 //                    String name = data.getString("username");

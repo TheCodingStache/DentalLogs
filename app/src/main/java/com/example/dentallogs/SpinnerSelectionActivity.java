@@ -141,6 +141,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         Spinner akinitiItems = findViewById(R.id.akinitiItems);
         Button button = findViewById(R.id.send);
         TextView date = findViewById(R.id.date);
+        EditText denture = findViewById(R.id.denture);
         sex = new Sex();
         face = new Face();
         job = new Job();
@@ -499,124 +500,125 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 jsonObject.addProperty("subCategory", akinitiSpinner.getSelectedItem().toString());
                 jsonObject.addProperty("item", akinitiItems.getSelectedItem().toString());
             }
-                socket.emit("sendToTechnicianAndroid", jsonObject);
-                startActivity(result);
-            });
+            jsonObject.addProperty("dentrue", denture.getText().toString());
+            socket.emit("sendToTechnicianAndroid", jsonObject);
+            startActivity(result);
+        });
 
 
-            kiniti = new ArrayList<>();
-            kiniti.add("Θερμοπλαστική");
-            kiniti.add("Ακρυλική");
-            kiniti.add("Άλλο");
+        kiniti = new ArrayList<>();
+        kiniti.add("Θερμοπλαστική");
+        kiniti.add("Ακρυλική");
+        kiniti.add("Άλλο");
 
-            thermo = new ArrayList<>();
-            thermo.add("Άκερς");
-            thermo.add("Ολική οδοντοστοιχία");
-            thermo.add("Μερική οδοντοστοιχία");
-            thermo.add("Επιοδιόρθωση");
-            thermo.add("Αναγόμωση");
+        thermo = new ArrayList<>();
+        thermo.add("Άκερς");
+        thermo.add("Ολική οδοντοστοιχία");
+        thermo.add("Μερική οδοντοστοιχία");
+        thermo.add("Επιοδιόρθωση");
+        thermo.add("Αναγόμωση");
 
-            allo = new ArrayList<>();
-            allo.add("Ατομικό Δισκάριο");
-            allo.add("Βασική Πλάκα");
+        allo = new ArrayList<>();
+        allo.add("Ατομικό Δισκάριο");
+        allo.add("Βασική Πλάκα");
 
-            akriliki = new ArrayList<>();
-            akriliki.add("Άκερς");
-            akriliki.add("Ολική οδοντοστοιχία");
-            akriliki.add("Μερική οδοντοστοιχία");
-            akriliki.add("Επιοδιόρθωση");
-            akriliki.add("Αναγόμωση");
+        akriliki = new ArrayList<>();
+        akriliki.add("Άκερς");
+        akriliki.add("Ολική οδοντοστοιχία");
+        akriliki.add("Μερική οδοντοστοιχία");
+        akriliki.add("Επιοδιόρθωση");
+        akriliki.add("Αναγόμωση");
 
-            akiniti = new ArrayList<>();
-            akiniti.add("PMMA");
-            akiniti.add("Μέταλλο");
-            akiniti.add("Ζιρκόνια");
+        akiniti = new ArrayList<>();
+        akiniti.add("PMMA");
+        akiniti.add("Μέταλλο");
+        akiniti.add("Ζιρκόνια");
 
-            pmma = new ArrayList<>();
-            pmma.add("Προσωρινές");
-            pmma.add("Ένθετο/Επένθετο");
+        pmma = new ArrayList<>();
+        pmma.add("Προσωρινές");
+        pmma.add("Ένθετο/Επένθετο");
 
 
-            metallo = new ArrayList<>();
-            //metallo
-            metallo.add("Μεταλλοκεραμική");
-            metallo.add("Μέταλλο/Φ.Π");
-            metallo.add("Όλικη Χύτη");
+        metallo = new ArrayList<>();
+        //metallo
+        metallo.add("Μεταλλοκεραμική");
+        metallo.add("Μέταλλο/Φ.Π");
+        metallo.add("Όλικη Χύτη");
 
-            zirkonia = new ArrayList<>();
-            //zirkonia
-            zirkonia.add("Διαστρωματική");
-            zirkonia.add("Μονολιθική");
-            zirkonia.add("Ένθετο/Επένθετο");
+        zirkonia = new ArrayList<>();
+        //zirkonia
+        zirkonia.add("Διαστρωματική");
+        zirkonia.add("Μονολιθική");
+        zirkonia.add("Ένθετο/Επένθετο");
 
-            firstSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, kiniti);
-            thirdSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, akiniti);
+        firstSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, kiniti);
+        thirdSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, akiniti);
 
-            firstSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            thirdSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        firstSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        thirdSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-            kinitiSpinner.setAdapter(firstSpinnerAdapter);
-            akinitiSpinner.setAdapter(thirdSpinnerAdapter);
+        kinitiSpinner.setAdapter(firstSpinnerAdapter);
+        akinitiSpinner.setAdapter(thirdSpinnerAdapter);
 
-            floatingActionButton.setOnClickListener(v ->
+        floatingActionButton.setOnClickListener(v ->
 
-            {
-                Intent intent = new Intent(SpinnerSelectionActivity.this, ChatActivity.class);
-                startActivity(intent);
-            });
-            kinitiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if (position == 0) {
-                        secondSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, thermo);
+        {
+            Intent intent = new Intent(SpinnerSelectionActivity.this, ChatActivity.class);
+            startActivity(intent);
+        });
+        kinitiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    secondSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, thermo);
 //                    kinitiSpinner.getSelectedItem().toString();
 //                    item = parent.getItemAtPosition(position).toString();
-                    }
-                    if (position == 1) {
-                        secondSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, akriliki);
+                }
+                if (position == 1) {
+                    secondSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, akriliki);
 //                    kinitiSpinner.getSelectedItem().toString();
 //                    item = parent.getItemAtPosition(position).toString();
-                    }
-                    if (position == 2) {
-                        secondSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, allo);
+                }
+                if (position == 2) {
+                    secondSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, allo);
 //                    kinitiSpinner.getSelectedItem().toString();
 //                    item = parent.getItemAtPosition(position).toString();
-                    }
-                    kinitiItems.setAdapter(secondSpinnerAdapter);
-                    secondSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 }
+                kinitiItems.setAdapter(secondSpinnerAdapter);
+                secondSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                }
-            });
-            akinitiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if (position == 0) {
-                        forthSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, pmma);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        akinitiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    forthSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, pmma);
 //                    akinitiSpinner.getSelectedItem().toString();
 //                    item = parent.getItemAtPosition(position).toString();
-                    }
-                    if (position == 1) {
-                        forthSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, metallo);
+                }
+                if (position == 1) {
+                    forthSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, metallo);
 //                    akinitiSpinner.getSelectedItem().toString();
 //                    item = parent.getItemAtPosition(position).toString();
-                    }
-                    if (position == 2) {
-                        forthSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, zirkonia);
+                }
+                if (position == 2) {
+                    forthSpinnerAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, zirkonia);
 //                    akinitiSpinner.getSelectedItem().toString();
 //                    item = parent.getItemAtPosition(position).toString();
-                    }
-                    akinitiItems.setAdapter(forthSpinnerAdapter);
-                    forthSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 }
+                akinitiItems.setAdapter(forthSpinnerAdapter);
+                forthSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-                }
-            });
+            }
+        });
 //        kinitiItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
 //            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -646,57 +648,57 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
 //            }
 //        });
 
-            back.setOnClickListener(v ->
-            {
-                Intent back = new Intent(SpinnerSelectionActivity.this, LabSelectionActivity.class);
-                startActivity(back);
-                finish();
-            });
-        }
-
-        @Override
-        protected void onActivityResult ( int requestCode, int resultCode, Intent data){
-            super.onActivityResult(requestCode, resultCode, data);
-
-            if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK && data != null) {
-                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                photo.setImageBitmap(bitmap);
-
-
-            } else if (requestCode == GalleryPick && resultCode == RESULT_OK && data != null) {
-                Uri imageUri = data.getData();
-                photo.setImageURI(imageUri);
-            } else {
-                Snackbar.make(mRelativeLayout, "Κάτι δεν πήγε καλά, δοκιμάστε ξανά", Snackbar.LENGTH_LONG).show();
-            }
-        }
-
-
-        private void openMedia () {
-            AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(SpinnerSelectionActivity.this);
-            myAlertDialog.setTitle("Επιλέξτε Φωτογραφία");
-            myAlertDialog.setPositiveButton("ΣΥΛΛΟΓΗ",
-                    (arg0, arg1) -> {
-                        Intent pictureActionIntent = null;
-                        pictureActionIntent = new Intent(
-                                Intent.ACTION_PICK,
-                                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        startActivityForResult(
-                                pictureActionIntent,
-                                GALLERY_PICTURE);
-                    });
-
-            myAlertDialog.setNegativeButton("ΚΑΜΕΡΑ",
-                    (arg0, arg1) -> {
-                        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-                        StrictMode.setVmPolicy(builder.build());
-                        Intent intent = new Intent(
-                                MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent,
-                                CAMERA_REQUEST);
-                    });
-            myAlertDialog.show();
-        }
-
-
+        back.setOnClickListener(v ->
+        {
+            Intent back = new Intent(SpinnerSelectionActivity.this, LabSelectionActivity.class);
+            startActivity(back);
+            finish();
+        });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK && data != null) {
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            photo.setImageBitmap(bitmap);
+
+
+        } else if (requestCode == GalleryPick && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            photo.setImageURI(imageUri);
+        } else {
+            Snackbar.make(mRelativeLayout, "Κάτι δεν πήγε καλά, δοκιμάστε ξανά", Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+
+    private void openMedia() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(SpinnerSelectionActivity.this);
+        myAlertDialog.setTitle("Επιλέξτε Φωτογραφία");
+        myAlertDialog.setPositiveButton("ΣΥΛΛΟΓΗ",
+                (arg0, arg1) -> {
+                    Intent pictureActionIntent = null;
+                    pictureActionIntent = new Intent(
+                            Intent.ACTION_PICK,
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(
+                            pictureActionIntent,
+                            GALLERY_PICTURE);
+                });
+
+        myAlertDialog.setNegativeButton("ΚΑΜΕΡΑ",
+                (arg0, arg1) -> {
+                    StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+                    StrictMode.setVmPolicy(builder.build());
+                    Intent intent = new Intent(
+                            MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent,
+                            CAMERA_REQUEST);
+                });
+        myAlertDialog.show();
+    }
+
+
+}

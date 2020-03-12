@@ -36,8 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:textAlignment="center"
                 android:text="Πληροφορίες Ασθενή"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_weight=".5"
-                    android:inputType="text" />
+                    android:inputType="textPersonName" />
 
                 <EditText
                     android:id="@+id/lastname"
@@ -94,16 +94,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_weight=".5"
-                    android:inputType="text" />
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/dateText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_margin="20dp"
                 android:text="Ημερομηνία Παραλαβής"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -168,8 +168,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:textAlignment="center"
                 android:text="Σχήμα προσώπου"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -221,8 +221,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:textAlignment="center"
                 android:text="Είδος Εργασίας"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -303,8 +303,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
-                android:textAlignment="center"
                 android:text="Χρώμα"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -421,8 +421,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
-                android:textAlignment="center"
                 android:text="Επιλογή Δοντιών"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -446,12 +446,25 @@
                 android:layout_margin="20dp"
                 android:orientation="horizontal">
 
+                <EditText
+                    android:id="@+id/denture"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Επιλέξτε οδοντοστοιχία..."
+                    android:inputType="textLongMessage" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/comment"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:hint="Σχόλια"
+                    android:layout_height="80dp"
+                    android:hint="Συμπληρώστε κάποια σχόλια..."
                     android:inputType="textLongMessage" />
             </LinearLayout>
 
@@ -459,8 +472,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:textAlignment="center"
                 android:text="Επιλογή Φωτογραφίας"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -478,27 +491,20 @@
                     android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:cropToPadding="false"
-                    android:gravity="center"
                     android:scaleType="centerInside"
                     android:src="@drawable/addphoto" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-
                 <Button
+                    android:layout_marginBottom="20dp"
                     android:id="@+id/send"
-                    android:layout_width="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
+                    android:background="@drawable/fill"
                     android:text="αποστολη"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
             </LinearLayout>
-
-        </LinearLayout>
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
