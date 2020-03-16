@@ -82,11 +82,6 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
             techPhoto = itemView.findViewById(R.id.technicianPhoto);
             socketIDView = itemView.findViewById(R.id.socketID);
             container = itemView.findViewById(R.id.container);
-//            cardView.setOnClickListener(v -> {
-//                Intent intent = new Intent(context, SpinnerSelectionActivity.class);
-//                itemView.getContext().startActivity(intent);
-//                ((Activity) context).finish();
-//            });
         }
     }
 }
