@@ -20,18 +20,12 @@ import com.example.dentallogs.R;
 import com.example.dentallogs.SpinnerSelectionActivity;
 
 import java.util.List;
-import java.util.prefs.Preferences;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static android.content.Context.MODE_PRIVATE;
 
 
 public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHolder>  {
     private List<Body> mTechLists;
     private Context context;
-    private String SHARED_PREFS = "sharedPrefs";
-
 
     public LabAdapter(List<Body> mTechLists, Context context) {
         this.mTechLists = mTechLists;
