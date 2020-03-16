@@ -48,14 +48,9 @@ public class LabSelectionActivity extends AppCompatActivity {
     private boolean doubleBackToExitPressedOnce = false;
     private String URL = "https://dentallogs.herokuapp.com/doctor/getTechnicians";
     private final String TAG = "gelaw";
-    ModelLogin modelLogin = new ModelLogin();
-    String username = modelLogin.getUsername();
-    String socketID = modelLogin.getSocketID();
     SwipeRefreshLayout swipeRefreshLayout;
     Activity mActivity;
     LabAdapter myAdapter;
-    String usernameTech;
-    private String SHARED_PREFS = "sharedPrefs";
 
     @Override
     public void onBackPressed() {

@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -170,9 +171,13 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         comment = findViewById(R.id.comment);
         senderSocketID = getIntent().getStringExtra("socketID");
         senderUsername = getIntent().getStringExtra("username");
-        Intent intent = new Intent(this, HistoryActivity.class);
-        intent.putExtra("technician", senderUsername);
-        startActivity(intent);
+        Bundle b = getIntent().getExtras();
+        String tech = b.getString("key");
+        Log.d("re malaka", "onCreate: " + senderUsername);
+
+//        Intent intent = new Intent(this, HistoryActivity.class);
+//        intent.putExtra("technician", senderUsername);
+//        startActivity(intent);
         _id = getIntent().getStringExtra("_id");
         back = findViewById(R.id.back);
         mRelativeLayout = findViewById(R.id.relativeSelection);

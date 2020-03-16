@@ -3,7 +3,8 @@ package com.example.dentallogs.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,10 +20,11 @@ import com.example.dentallogs.R;
 import com.example.dentallogs.SpinnerSelectionActivity;
 
 import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHolder>  {
+public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHolder> {
     private List<Body> mTechLists;
     private Context context;
 
@@ -47,8 +48,11 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
         holder.socketIDView.setText(techList.getSocketID());
         holder.container.setOnClickListener(v1 -> {
             Intent i = new Intent(context, SpinnerSelectionActivity.class);
+            Bundle b = new Bundle();
+            b.putString("key", techList.getUsername());
             i.putExtra("socketID", techList.getSocketID());
             i.putExtra("username", techList.getUsername());
+            Log.d("GIA NA DOUME", "onBindViewHolder: " + techList.getUsername());
             context.startActivity(i);
             ((Activity) context).finish();
         });
