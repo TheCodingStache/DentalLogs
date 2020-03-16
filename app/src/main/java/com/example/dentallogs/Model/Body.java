@@ -6,25 +6,14 @@ import com.google.gson.annotations.SerializedName;
 public class Body {
     private String socketID;
     private String username;
-    @SerializedName("_id")
-    private String id;
 
-    public Body(String socketID, String username, String id) {
+    public Body(String socketID, String username) {
         this.socketID = socketID;
         this.username = username;
-        this.id = id;
     }
 
     public void setSocketID(String socketID) {
         this.socketID = socketID;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getSocketID() {

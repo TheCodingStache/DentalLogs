@@ -3,6 +3,7 @@ package com.example.dentallogs.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,13 +20,17 @@ import com.example.dentallogs.R;
 import com.example.dentallogs.SpinnerSelectionActivity;
 
 import java.util.List;
+import java.util.prefs.Preferences;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.content.Context.MODE_PRIVATE;
 
-public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHolder> {
+
+public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHolder>  {
     private List<Body> mTechLists;
     private Context context;
+    private String SHARED_PREFS = "sharedPrefs";
 
 
     public LabAdapter(List<Body> mTechLists, Context context) {
@@ -50,7 +56,6 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
             Intent i = new Intent(context, SpinnerSelectionActivity.class);
             i.putExtra("socketID", techList.getSocketID());
             i.putExtra("username", techList.getUsername());
-//            i.putExtra("_id", techList.getId());
             context.startActivity(i);
             ((Activity) context).finish();
         });
@@ -62,7 +67,7 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
         return mTechLists.size();
     }
 
-    public class MyAdapterViewHolder extends RecyclerView.ViewHolder {
+    static class MyAdapterViewHolder extends RecyclerView.ViewHolder {
         TextView tech;
         CardView cardView;
         TextView _id;

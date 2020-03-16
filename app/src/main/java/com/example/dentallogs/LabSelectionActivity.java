@@ -1,9 +1,11 @@
 package com.example.dentallogs;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -52,6 +54,8 @@ public class LabSelectionActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeRefreshLayout;
     Activity mActivity;
     LabAdapter myAdapter;
+    String usernameTech;
+    private String SHARED_PREFS = "sharedPrefs";
 
     @Override
     public void onBackPressed() {
