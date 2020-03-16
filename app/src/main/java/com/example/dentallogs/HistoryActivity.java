@@ -44,7 +44,6 @@ public class HistoryActivity extends AppCompatActivity {
     String color;
     String denture;
     String comment;
-    String technician;
     JsonObject jsonObject;
     ModelHistory modelHistory;
     RecyclerView.Adapter historyAdapter;
@@ -102,8 +101,8 @@ public class HistoryActivity extends AppCompatActivity {
     private void emitData() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         doctorName = sharedPreferences.getString("doctorName", "");
-        technician = getIntent().getStringExtra("technician");
-        jsonObject.addProperty("technician", technician);
+        String tech = sharedPreferences.getString("technician", "");
+        jsonObject.addProperty("technician", tech);
         jsonObject.addProperty("doctor", doctorName);
         socket.emit("getDoctorsHistoryAndroid", jsonObject);
     }

@@ -57,6 +57,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
     private Sex sex;
     private Face face;
     private Job job;
+    SharedPreferences sharedPreferences;
     private Socket socket;
     private AtomikoVasiko mAtomikoVasiko;
     private ColorModel colorModel;
@@ -174,7 +175,10 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String tech = b.getString("key");
         Log.d("re malaka", "onCreate: " + senderUsername);
-
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("technician", senderUsername);
+        editor.apply();
 //        Intent intent = new Intent(this, HistoryActivity.class);
 //        intent.putExtra("technician", senderUsername);
 //        startActivity(intent);
@@ -526,7 +530,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
             result.putExtra("job", job);
             result.putExtra("color", colorModel);
             result.putExtra("atomikovasiko", mAtomikoVasiko);
-            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+            sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
             doctorID = sharedPreferences.getString("doctorID", "");
             doctorName = sharedPreferences.getString("doctorName", "");
             String name = patientName.getText().toString();
