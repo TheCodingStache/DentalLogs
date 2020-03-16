@@ -12,6 +12,8 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -71,8 +73,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
     ArrayList<String> pmma;
     ArrayList<String> metallo;
     ArrayList<String> zirkonia;
-
-
+    Boolean isOpen = false;
     String username;
     String socketID;
     private String URL = "https://dentallogs.herokuapp.com/";
@@ -89,6 +90,9 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
     String faceSender = "";
     String jobSender = "";
     String sexSender = "";
+    FloatingActionButton plus, history, chat;
+    TextView historyText, chatText;
+    private Animation fab_open, fab_close, fab_clock, fab_anticlock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,11 +102,51 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         doctorID = getIntent().getStringExtra("doctorID");
         patientName = findViewById(R.id.name);
         patientFullName = findViewById(R.id.lastname);
+        plus = findViewById(R.id.floatingActionButton);
+        history = findViewById(R.id.floatingActionButton1);
+        chat = findViewById(R.id.floatingActionButton2);
+        historyText = findViewById(R.id.historyFloat);
+        chatText = findViewById(R.id.communication);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        fab_clock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_rotate_clock);
+        fab_anticlock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_rotate_anticlock);
         JsonObject jsonObject = new JsonObject();
 //        _id = jsonObject.toString();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+        plus.setOnClickListener(v -> {
+            if (isOpen) {
+                historyText.setVisibility(View.INVISIBLE);
+                chatText.setVisibility(View.INVISIBLE);
+                chat.startAnimation(fab_close);
+                history.startAnimation(fab_close);
+                plus.startAnimation(fab_anticlock);
+                chat.setClickable(false);
+                history.setClickable(false);
+                isOpen = false;
+            } else {
+                historyText.setVisibility(View.VISIBLE);
+                chatText.setVisibility(View.VISIBLE);
+                chat.startAnimation(fab_open);
+                history.startAnimation(fab_open);
+                plus.startAnimation(fab_clock);
+                chat.setClickable(true);
+                history.setClickable(true);
+                isOpen = true;
+            }
+        });
+        chat.setOnClickListener(v ->
+        {
+            Intent intent = new Intent(SpinnerSelectionActivity.this, ChatActivity.class);
+            startActivity(intent);
+        });
+        history.setOnClickListener(v -> {
+            Intent intent = new Intent(SpinnerSelectionActivity.this, HistoryActivity.class);
+            startActivity(intent);
+        });
         try {
             socket = IO.socket(URL);
             socket.connect();
@@ -126,9 +170,11 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         comment = findViewById(R.id.comment);
         senderSocketID = getIntent().getStringExtra("socketID");
         senderUsername = getIntent().getStringExtra("username");
+        Intent intent = new Intent(this, HistoryActivity.class);
+        intent.putExtra("technician", senderUsername);
+        startActivity(intent);
         _id = getIntent().getStringExtra("_id");
         back = findViewById(R.id.back);
-        FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
         mRelativeLayout = findViewById(R.id.relativeSelection);
         RadioGroup sexGroup = findViewById(R.id.sexGroup);
         RadioGroup faceGroup = findViewById(R.id.faceGroup);
@@ -500,7 +546,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
                 jsonObject.addProperty("subCategory", akinitiSpinner.getSelectedItem().toString());
                 jsonObject.addProperty("item", akinitiItems.getSelectedItem().toString());
             }
-            jsonObject.addProperty("dentrue", denture.getText().toString());
+            jsonObject.addProperty("denture", denture.getText().toString());
             socket.emit("sendToTechnicianAndroid", jsonObject);
             startActivity(result);
         });
@@ -560,12 +606,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
         kinitiSpinner.setAdapter(firstSpinnerAdapter);
         akinitiSpinner.setAdapter(thirdSpinnerAdapter);
 
-        floatingActionButton.setOnClickListener(v ->
 
-        {
-            Intent intent = new Intent(SpinnerSelectionActivity.this, ChatActivity.class);
-            startActivity(intent);
-        });
         kinitiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -619,34 +660,7 @@ public class SpinnerSelectionActivity extends AppCompatActivity {
 
             }
         });
-//        kinitiItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                if (parent.getItemAtPosition(position).equals("Μέταλλο")) {
-//                    kinitiItems.getSelectedItem().toString();
-//                    item = parent.getItemAtPosition(position).toString();
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        akinitiItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                if (parent.getItemAtPosition(position).equals("Ζιρκόνια")) {
-//                    akinitiItems.getSelectedItem().toString();
-//                    item = parent.getItemAtPosition(position).toString();
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+
 
         back.setOnClickListener(v ->
         {

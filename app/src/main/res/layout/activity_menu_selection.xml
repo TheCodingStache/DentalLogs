@@ -495,17 +495,84 @@
                     android:src="@drawable/addphoto" />
             </LinearLayout>
 
-                <Button
-                    android:layout_marginBottom="20dp"
-                    android:id="@+id/send"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/fill"
-                    android:text="αποστολη"
-                    android:textColor="@color/white" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/fill"
+                android:text="αποστολη"
+                android:textColor="@color/white" />
+        </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/communication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="87dp"
+        android:layout_marginBottom="193dp"
+        android:padding="8dp"
+        android:text="Επικοινώνησε με τον οδοντοτεχνίτη"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:background="@color/darkBlue" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="185dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:elevation="16dp"
+        android:focusable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@color/darkBlue"
+        app:fabSize="normal"
+        app:pressedTranslationZ="12dp"
+        app:srcCompat="@drawable/question" />
+
+
+    <TextView
+        android:id="@+id/historyFloat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="136dp"
+        android:padding="8dp"
+        android:text="Ιστορικό"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:background="@color/darkBlue" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="125dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:elevation="16dp"
+        android:focusable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@color/darkBlue"
+        app:fabSize="normal"
+        app:pressedTranslationZ="12dp"
+        app:srcCompat="@drawable/history" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -515,13 +582,15 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="55dp"
-        android:background="@color/darkBlue"
+        android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:elevation="16dp"
         android:focusable="true"
-        android:src="@drawable/chat_new_white"
         android:visibility="visible"
+        app:backgroundTint="@color/darkBlue"
         app:fabSize="normal"
-        app:pressedTranslationZ="12dp" />
+        app:pressedTranslationZ="12dp"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
+
 
 </RelativeLayout>

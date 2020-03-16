@@ -50,7 +50,7 @@
         <activity
             android:name=".SpinnerSelectionActivity"
             android:fitsSystemWindows="true"
-            android:screenOrientation="fullSensor"></activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".LabSelectionActivity"
             android:screenOrientation="fullSensor" />

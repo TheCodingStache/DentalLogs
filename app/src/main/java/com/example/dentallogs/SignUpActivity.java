@@ -122,6 +122,7 @@ public class SignUpActivity extends AppCompatActivity {
                         startActivity(transfer);
                         finish();
                     } else if (response.code() == 300) {
+                        loadingBar.dismiss();
                         Snackbar.make(mRelativeLayout, "Ο λογαριασμός υπάρχει ήδη", Snackbar.LENGTH_SHORT).show();
                     }
                 }

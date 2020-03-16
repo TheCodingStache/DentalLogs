@@ -6,20 +6,18 @@ public class ModelHistory {
     private String date;
     private String gender;
     private String face;
-    private String job;
     private String category;
     private String material;
     private String color;
     private String teeth;
     private String comment;
 
-    public ModelHistory(String name, String lastName, String date, String gender, String face, String job, String category, String material, String color, String teeth, String comment) {
+    public ModelHistory(String name, String lastName, String date, String gender, String face, String category, String material, String color, String teeth, String comment) {
         this.name = name;
         this.lastName = lastName;
         this.date = date;
         this.gender = gender;
         this.face = face;
-        this.job = job;
         this.category = category;
         this.material = material;
         this.color = color;
@@ -27,7 +25,7 @@ public class ModelHistory {
         this.comment = comment;
     }
 
-    public ModelHistory(){
+    public ModelHistory() {
     }
 
     public String getName() {
@@ -70,13 +68,6 @@ public class ModelHistory {
         this.face = face;
     }
 
-    public String getJob() {
-        return job;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
-    }
 
     public String getCategory() {
         return category;

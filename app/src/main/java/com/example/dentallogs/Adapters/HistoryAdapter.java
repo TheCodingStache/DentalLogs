@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dentallogs.Model.ModelHistory;
 import com.example.dentallogs.R;
+
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyAdapterViewHolder> {
@@ -28,7 +29,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyAdapte
     @NonNull
     @Override
     public MyAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_list, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_item, parent, false);
         return new MyAdapterViewHolder(v);
     }
 
@@ -36,19 +37,16 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyAdapte
     @Override
     public void onBindViewHolder(@NonNull MyAdapterViewHolder holder, int position) {
         ModelHistory modelHistory = mTechLists.get(position);
-        holder.name.setText(modelHistory.getName());
-        holder.lastName.setText(modelHistory.getLastName());
-        holder.date.setText(modelHistory.getDate());
-        holder.gender.setText(modelHistory.getGender());
-        holder.face.setText(modelHistory.getFace());
-        holder.job.setText(modelHistory.getJob());
-        holder.category.setText(modelHistory.getCategory());
-        holder.material.setText(modelHistory.getMaterial());
-        holder.color.setText(modelHistory.getColor());
-        holder.teeth.setText(modelHistory.getTeeth());
-        holder.comment.setText(modelHistory.getComment());
-        holder.container.setOnClickListener(v1 -> {
-        });
+        holder.name.setText("Όνομα: " + modelHistory.getName());
+        holder.lastName.setText("Επώνυμο: " + modelHistory.getLastName());
+        holder.date.setText("Ημερομηνία Παραλαβής: " + modelHistory.getDate());
+        holder.gender.setText("Φύλλο: " + modelHistory.getGender());
+        holder.face.setText("Σχήμα προσώπου: " + modelHistory.getFace());
+        holder.category.setText("Είδος Εργασίας: " + modelHistory.getCategory());
+        holder.material.setText("Υλικό: " + modelHistory.getMaterial());
+        holder.color.setText("Χρώμα: " + modelHistory.getColor());
+        holder.teeth.setText("Οδοντοστοιχία: " + modelHistory.getTeeth());
+        holder.comment.setText("Σχόλια: " + modelHistory.getComment());
     }
 
 
