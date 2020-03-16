@@ -63,7 +63,6 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
     static class MyAdapterViewHolder extends RecyclerView.ViewHolder {
         TextView tech;
         CardView cardView;
-        TextView _id;
         CircleImageView techPhoto;
         TextView socketIDView;
         RelativeLayout container;
