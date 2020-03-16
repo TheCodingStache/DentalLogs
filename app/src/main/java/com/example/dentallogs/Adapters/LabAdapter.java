@@ -51,7 +51,6 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.MyAdapterViewHol
         Body techList = mTechLists.get(position);
         holder.tech.setText(techList.getUsername());
         holder.socketIDView.setText(techList.getSocketID());
-//        holder._id.setText(techList.getId());
         holder.container.setOnClickListener(v1 -> {
             Intent i = new Intent(context, SpinnerSelectionActivity.class);
             i.putExtra("socketID", techList.getSocketID());
